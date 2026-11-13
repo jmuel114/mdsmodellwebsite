@@ -822,6 +822,8 @@
       main.insertBefore(band, main.firstChild);
     }
     $$(".nav a").forEach(function (a) { a.classList.toggle("aktiv", a.dataset.nav === navKey); });
+    var produktSeite = navKey === "shop" || navKey === "spur-n" || navKey === "spur-g";
+    $(".nav-haupt").classList.toggle("aktiv", produktSeite);
     $("#nav").classList.remove("offen");
     window.scrollTo(0, 0);
     document.title = (main.querySelector("h1") ? main.querySelector("h1").textContent + " – " : "") + "MDS-Modell";

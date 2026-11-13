@@ -488,3 +488,21 @@ img.ansprech-bild{object-fit:cover;padding:0}
 .nav a{white-space:nowrap}
 .lightbox{background:#1a1a1a}
 @media (max-width:1400px){.korb-btn #korbText{display:none}.korb-btn{padding:12px 14px}}
+
+/* Hauptmenü mit Untermenü „Produkte“ */
+.nav{align-items:center}
+.nav a{font-size:1.1rem;padding:10px 16px}
+.nav-gruppe{position:relative}
+.nav-haupt{display:inline-flex !important;align-items:center;gap:6px}
+.nav-unter{position:absolute;top:100%;left:0;min-width:220px;background:#fff;border:1px solid var(--linie);border-top:3px solid var(--rot);box-shadow:0 10px 24px rgba(0,0,0,.12);padding:6px 0;display:none;z-index:30}
+.nav-unter a{display:block;padding:11px 18px;font-size:1.05rem}
+.nav-unter a:hover{background:var(--creme)}
+.nav-gruppe:hover .nav-unter,.nav-gruppe:focus-within .nav-unter{display:block}
+@media (min-width:1181px){.korb-btn #korbText{display:inline}.korb-btn{padding:12px 18px}}
+@media (max-width:1180px){
+  .nav-unter{position:static;display:block;border:0;box-shadow:none;padding:0 0 0 18px;min-width:0}
+  .nav-unter a{border-bottom:1px solid var(--creme);font-size:1.02rem}
+  .nav-haupt svg{display:none}
+}
+@media (max-width:760px){.korb-btn #korbText{display:none}}
+@media (max-width:1180px){.nav{align-items:stretch}.nav a,.nav-gruppe{text-align:left;width:100%}.nav-haupt{display:flex !important}}
