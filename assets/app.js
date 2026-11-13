@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var SHOP = null, KAT = [], PROD = [], DEMO = false;
+  var SHOP = null, KAT = [], PROD = [], HAENDLER = [], DOWNLOADS = [], DEMO = false;
   var main = document.getElementById("inhalt");
 
   /* ---------- Hilfsfunktionen ---------- */
@@ -312,7 +312,9 @@
         '<button class="btn" id="inKorb">In den Warenkorb</button></div>' +
         '<div class="hinweisbox gelb" id="aufpreisHinweis" style="display:none">Für diese Ausführung bestätigen wir Ihnen den genauen Preis mit der Vorausrechnung. Sie können die Bestellung dann noch ablehnen.</div>';
     return '<div class="wrap"><div class="brot" style="margin-top:24px"><a href="#start">Start</a> › <a href="#shop">Shop</a> › <a href="#kat-' + k.id + '">' + esc((k.spur ? "Spur " + k.spur + " · " : "") + k.name) + "</a></div>" +
-      '<div class="detail" style="padding-top:8px"><div><div class="bild">' + marke(p) + bildHtml(p) + "</div></div>" +
+      '<div class="detail" style="padding-top:8px"><div><div class="bild zoombild" id="zoombild" title="Zum Vergrößern klicken">' + marke(p) + bildHtml(p) +
+      '<button type="button" class="lupe-btn" id="lupeBtn" aria-label="Bild groß anzeigen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg></button></div>' +
+      '<p class="zoom-hinweis">Mit der Maus über das Bild fahren für die Lupe – klicken für die Großansicht.</p></div>' +
       '<div><span class="artnr">Art.-Nr. ' + esc(artNr(p)) + "</span><h1>" + esc(p.name) + "</h1>" +
       '<div class="preis" id="dPreis">' + preisAnzeige(p) + '</div><p class="mwst">inkl. MwSt., zzgl. <a href="#versand">Versandkosten</a></p>' +
       kauf +
@@ -485,6 +487,67 @@
       "</div></div>";
   }
 
+  /* ---------- Rechtstexte ---------- */
+  function adresseZeile() { return esc(SHOP.firma) + ", Inhaber " + esc(SHOP.inhaber) + ", " + esc(SHOP.strasse) + ", " + esc(SHOP.ort); }
+
+  // Grundlage: gesetzliche Muster-Widerrufsbelehrung (Anlage 1 zu Art. 246a § 1 Abs. 2 S. 2 EGBGB)
+  function widerrufText() {
+    return "<p>Verbraucher ist jede natürliche Person, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können. Verbrauchern steht ein Widerrufsrecht nach folgender Maßgabe zu:</p>" +
+      "<h2>Widerrufsrecht</h2>" +
+      "<p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>" +
+      "<p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat. Haben Sie mehrere Waren im Rahmen einer einheitlichen Bestellung bestellt, die getrennt geliefert werden, beginnt die Frist mit dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die letzte Ware in Besitz genommen haben bzw. hat. Wird eine Ware in mehreren Teilsendungen oder Stücken geliefert, beginnt die Frist mit Inbesitznahme der letzten Teilsendung bzw. des letzten Stücks.</p>" +
+      "<p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (" + adresseZeile() + ", Telefon " + esc(SHOP.telefon) + ", Fax " + esc(SHOP.fax) + ", E-Mail " + esc(SHOP.email) + ") mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. " +
+      'Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist. Sie können das <a href="#widerrufsformular">Online-Widerrufsformular</a> auf unserer Webseite elektronisch ausfüllen und übermitteln. Machen Sie von dieser Möglichkeit Gebrauch, so werden wir Ihnen unverzüglich (z. B. per E-Mail) eine Bestätigung über den Eingang eines solchen Widerrufs übermitteln.</p>' +
+      "<p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>" +
+      "<h2>Folgen des Widerrufs</h2>" +
+      "<p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet. Wir können die Rückzahlung verweigern, bis wir die Waren wieder zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie die Waren zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>" +
+      "<p>Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrags unterrichten, an " + adresseZeile() + " zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der Frist von vierzehn Tagen absenden.</p>" +
+      "<p>Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>" +
+      "<p>Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwendigen Umgang mit ihnen zurückzuführen ist.</p>" +
+      "<h2>Ausschluss des Widerrufsrechts</h2>" +
+      "<p>Das Widerrufsrecht besteht nicht bei Verträgen zur Lieferung von Waren, die nicht vorgefertigt sind und für deren Herstellung eine individuelle Auswahl oder Bestimmung durch den Verbraucher maßgeblich ist oder die eindeutig auf die persönlichen Bedürfnisse des Verbrauchers zugeschnitten sind (z. B. individuelle Umlackierungen, Beschriftungen oder Umbauten nach Kundenwunsch).</p>" +
+      "<h2>Muster-Widerrufsformular</h2>" +
+      "<p>(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück – oder nutzen Sie unser " + '<a href="#widerrufsformular">Online-Widerrufsformular</a>.)</p>' +
+      '<div class="muster">An: ' + adresseZeile() + ", Fax " + esc(SHOP.fax) + ", E-Mail " + esc(SHOP.email) + "<br><br>" +
+      "Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*)<br><br>" +
+      "_______________________________________<br><br>Bestellt am (*)/erhalten am (*): ______________<br>Name des/der Verbraucher(s): ______________<br>Anschrift des/der Verbraucher(s): ______________<br>" +
+      "Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier): ______________<br>Datum: ______________<br><br>(*) Unzutreffendes streichen.</div>";
+  }
+
+  function datenschutzText() {
+    var formsubmit = SHOP.versandModus === "formsubmit";
+    return "<p><i>Stand: November 2026</i></p>" +
+      "<h2>1. Verantwortlicher</h2>" +
+      "<p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br>" + adresseZeile() + "<br>Telefon: " + esc(SHOP.telefon) + " · E-Mail: " + esc(SHOP.email) + "</p>" +
+      "<p>Wir nehmen den Schutz Ihrer persönlichen Daten ernst. Personenbezogene Daten werden auf dieser Website nur im technisch notwendigen Umfang und für die unten genannten Zwecke verarbeitet. Wir verkaufen Ihre Daten nicht und verwenden sie nicht für Werbung oder Profilbildung.</p>" +
+      "<h2>2. Aufruf der Website und Server-Logfiles</h2>" +
+      "<p>Beim Aufruf der Website übermittelt Ihr Browser automatisch Informationen an den Server, die in sogenannten Logfiles gespeichert werden: IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite/Datei, Referrer-URL (zuvor besuchte Seite), Browsertyp und -version sowie Betriebssystem. Diese Daten sind technisch erforderlich, um die Website anzuzeigen und Stabilität und Sicherheit zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse). Eine Zusammenführung mit anderen Datenquellen findet nicht statt.</p>" +
+      '<p class="platzhalter">Hosting: Bitte den tatsächlichen Hoster eintragen. Bei GitHub Pages: GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. GitHub verarbeitet die oben genannten Zugriffsdaten auch in den USA; die Übermittlung stützt sich auf das EU-US Data Privacy Framework bzw. EU-Standardvertragsklauseln. Bei eigenem Webspace: Name und Anschrift des Hosters sowie Hinweis auf den Auftragsverarbeitungsvertrag.</p>' +
+      "<h2>3. Keine Cookies, keine Analyse- oder Trackingdienste</h2>" +
+      "<p>Diese Website setzt keine Cookies und verwendet keine Analyse-, Werbe- oder Trackingdienste. Schriftarten werden lokal von unserem eigenen Server geladen; es findet keine Verbindung zu Google Fonts statt.</p>" +
+      "<h2>4. Warenkorb (lokaler Speicher Ihres Browsers)</h2>" +
+      "<p>Damit Ihr Warenkorb beim Weiterklicken erhalten bleibt, speichern wir die ausgewählten Artikel sowie – falls Sie das Bestellformular ausfüllen – Ihre Adressangaben im lokalen Speicher (localStorage) Ihres Browsers. Diese Daten verbleiben auf Ihrem Gerät und werden nicht an uns übertragen, solange Sie keine Bestellung absenden. Sie können sie jederzeit über die Einstellungen Ihres Browsers löschen. Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG (unbedingt erforderlich für den von Ihnen gewünschten Dienst) und Art. 6 Abs. 1 lit. b DSGVO.</p>" +
+      "<h2>5. Bestellungen</h2>" +
+      "<p>Wenn Sie eine Bestellung aufgeben, verarbeiten wir die von Ihnen angegebenen Daten (Name, ggf. Firma, Anschrift, Land, E-Mail-Adresse, optional Telefonnummer und Kundennummer, bestellte Artikel, gewählte Liefer- und Zahlungsart, Anmerkungen) zur Abwicklung des Kaufvertrags: Erstellung der Rechnung, Versand bzw. Abholung, Kommunikation mit Ihnen (Art. 6 Abs. 1 lit. b DSGVO). Sie erhalten eine automatische Eingangsbestätigung per E-Mail. " +
+      "Für den Versand geben wir Name und Lieferadresse an das beauftragte Versandunternehmen (DHL) weiter, zur Zahlungsabwicklung erhält unsere Bank die für die Überweisung nötigen Angaben. Eine Online-Zahlung über Zahlungsdienstleister findet nicht statt.</p>" +
+      "<p>Bestell- und Rechnungsdaten bewahren wir entsprechend den handels- und steuerrechtlichen Aufbewahrungsfristen (§ 257 HGB, § 147 AO; bis zu 8 bzw. 10 Jahre) auf (Art. 6 Abs. 1 lit. c DSGVO) und löschen sie danach.</p>" +
+      "<h2>6. Werkstatt-Anfragen, Widerrufsformular und Kontakt</h2>" +
+      "<p>Wenn Sie uns über das Anfrageformular, das Online-Widerrufsformular, per E-Mail oder telefonisch kontaktieren, verarbeiten wir Ihre Angaben (z. B. Name, E-Mail-Adresse, Telefonnummer, Ihre Nachricht bzw. die widerrufenen Waren), um Ihr Anliegen zu bearbeiten (Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen und Widerrufen, sonst Art. 6 Abs. 1 lit. f DSGVO). Die Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>" +
+      (formsubmit
+        ? "<h2>7. Übermittlung der Formulare per E-Mail-Dienst (FormSubmit)</h2>" +
+          "<p>Die Inhalte des Bestell-, Anfrage- und Widerrufsformulars werden technisch über den Dienst FormSubmit (formsubmit.co, Devro LABS) an unser E-Mail-Postfach weitergeleitet; FormSubmit versendet auch die automatische Eingangsbestätigung an Sie. Dabei werden die eingegebenen Daten sowie Ihre IP-Adresse an FormSubmit übertragen und dort zur Zustellung verarbeitet; eine Verarbeitung außerhalb der EU (insbesondere in den USA) ist möglich. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsabwicklung bzw. Bearbeitung Ihrer Anfrage) sowie unser berechtigtes Interesse an einer einfachen technischen Übermittlung (Art. 6 Abs. 1 lit. f DSGVO). Weitere Informationen: https://formsubmit.co/privacy.</p>"
+        : "<h2>7. Versand der Formulare</h2><p>Die Inhalte der Formulare werden über unseren eigenen Webserver per E-Mail an uns übermittelt; zusätzlich wird eine Sicherungskopie der Bestellung auf dem Server gespeichert. Ein externer Dienstleister ist nicht beteiligt.</p>") +
+      "<h2>8. Bilder und Karten</h2>" +
+      "<p>Produktfotos werden von unserem eigenen Server (www.mds-modell.eu) geladen. Eine Karte ist nicht eingebettet. Erst wenn Sie auf der Kontaktseite auf „In Google Maps öffnen“ klicken, wird Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) in einem neuen Fenster aufgerufen; dann gelten die Datenschutzbestimmungen von Google.</p>" +
+      "<h2>9. Ihre Rechte</h2>" +
+      "<p>Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO), auf Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie das Recht, einer Verarbeitung auf Grundlage berechtigter Interessen zu widersprechen (Art. 21 DSGVO). Wenden Sie sich dazu einfach per Telefon, Post oder E-Mail an uns.</p>" +
+      "<p>Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig für uns ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.</p>" +
+      "<h2>10. Datensicherheit</h2>" +
+      "<p>Die Übertragung dieser Website und aller Formulare erfolgt verschlüsselt (HTTPS/TLS).</p>" +
+      "<h2>11. Änderungen</h2>" +
+      "<p>Wir passen diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Vorgaben ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>";
+  }
+
   function seiteText(id) {
     var T = {
       impressum: ["Impressum",
@@ -494,12 +557,10 @@
         "<h2>Verantwortlich für den Inhalt</h2><p>" + esc(SHOP.inhaber) + ", Anschrift wie oben</p>" +
         "<h2>Haftung für Links</h2><p>Für Inhalte externer Links übernehmen wir keine Haftung. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>" +
         "<h2>Urheberrecht</h2><p>Alle Inhalte dieser Website liegen bei " + esc(SHOP.inhaber) + ". Vervielfältigung und Weitergabe an Dritte nur mit Zustimmung.</p>"],
-      datenschutz: ["Datenschutzerklärung",
-        '<p class="platzhalter">Bitte die bestehende Datenschutzerklärung hier einfügen und um folgende Punkte ergänzen: Bestellformular (Zweck: Vertragsabwicklung, Art. 6 Abs. 1 lit. b DSGVO), E-Mail-Versand der Bestellung, Speicherung des Warenkorbs im Browser (localStorage, kein Cookie), Google Fonts (oder lokal einbinden), Hoster.</p>'],
+      datenschutz: ["Datenschutzerklärung", datenschutzText()],
       agb: ["Allgemeine Geschäftsbedingungen",
         '<p class="platzhalter">Bitte die bestehenden AGB hier einfügen. Empfehlung: den Abschnitt „Vertragsschluss“ an den Online-Shop anpassen (Bestellung über den Button „Zahlungspflichtig bestellen“, automatische Eingangsbestätigung per E-Mail, Vertragsschluss mit Zusendung der Rechnung).</p>'],
-      widerruf: ["Widerrufsbelehrung",
-        '<p class="platzhalter">Bitte die bestehende Widerrufsbelehrung hier einfügen.</p>'],
+      widerruf: ["Widerrufsbelehrung", widerrufText()],
       versand: ["Versand & Zahlung",
         "<h2>Zahlungsarten</h2><ul><li><b>Vorauskasse per Überweisung</b> – für Neukunden und Bestellungen aus dem Ausland. Sie erhalten eine Vorausrechnung per E-Mail; der Versand erfolgt nach Zahlungseingang. Erfolgt die Zahlung nicht innerhalb von 30 Tagen, wird der Auftrag storniert.</li>" +
         "<li><b>Rechnung</b> – für Bestandskunden: 8 Tage Zeit zur Prüfung und Überweisung nach Lieferung.</li><li><b>Barzahlung</b> bei Abholung in Auenwald.</li></ul>" +
@@ -588,6 +649,135 @@
   window.addEventListener("scroll", function () { if (zug) requestAnimationFrame(heroZugScroll); }, { passive: true });
   window.addEventListener("resize", function () { if (zug) heroZugScroll(); });
 
+  /* ---------- Lupe & Großansicht ---------- */
+  function zoomAktionen() {
+    var box = $("#zoombild");
+    if (!box) return;
+    var img = box.querySelector("img");
+    function offnen() {
+      var bild = box.querySelector("img");
+      var inhalt = bild ? '<img src="' + esc(bild.currentSrc || bild.src) + '" alt="' + esc(bild.alt) + '">' : '<div class="lb-svg">' + (box.querySelector(".ersatz") || {}).innerHTML + "</div>";
+      var lb = document.createElement("div");
+      lb.className = "lightbox";
+      lb.setAttribute("role", "dialog");
+      lb.setAttribute("aria-label", "Großansicht");
+      lb.innerHTML = '<div class="lb-leiste"><span>' + esc(document.querySelector(".detail h1").textContent) + '</span>' +
+        '<span class="lb-knoepfe"><button type="button" data-z="-1" aria-label="Verkleinern">−</button><button type="button" data-z="1" aria-label="Vergrößern">+</button>' +
+        '<button type="button" class="lb-zu" aria-label="Schließen">✕ Schließen</button></span></div>' +
+        '<div class="lb-flaeche"><div class="lb-inhalt">' + inhalt + "</div></div>" +
+        '<div class="lb-tipp">Klicken oder +/− zum Zoomen · Bild mit der Maus verschieben · Esc schließt</div>';
+      document.body.appendChild(lb);
+      document.body.style.overflow = "hidden";
+      var stufe = 1, flaeche = lb.querySelector(".lb-flaeche"), inn = lb.querySelector(".lb-inhalt");
+      function setzen(neu, ex, ey) {
+        var alt = stufe;
+        stufe = Math.max(1, Math.min(4, neu));
+        var r = flaeche.getBoundingClientRect();
+        var fx = ex == null ? 0.5 : (flaeche.scrollLeft + ex - r.left) / flaeche.scrollWidth;
+        var fy = ey == null ? 0.5 : (flaeche.scrollTop + ey - r.top) / flaeche.scrollHeight;
+        inn.style.width = (stufe * 100) + "%";
+        inn.style.height = (stufe * 100) + "%";
+        flaeche.classList.toggle("gezoomt", stufe > 1);
+        flaeche.scrollLeft = fx * flaeche.scrollWidth - (ex == null ? r.width / 2 : ex - r.left);
+        flaeche.scrollTop = fy * flaeche.scrollHeight - (ey == null ? r.height / 2 : ey - r.top);
+        return alt;
+      }
+      var zieh = null, bewegt = false;
+      flaeche.addEventListener("mousedown", function (e) { zieh = { x: e.clientX, y: e.clientY, sl: flaeche.scrollLeft, st: flaeche.scrollTop }; bewegt = false; });
+      window.addEventListener("mousemove", ziehen);
+      function ziehen(e) {
+        if (!zieh) return;
+        var dx = e.clientX - zieh.x, dy = e.clientY - zieh.y;
+        if (Math.abs(dx) + Math.abs(dy) > 4) bewegt = true;
+        flaeche.scrollLeft = zieh.sl - dx; flaeche.scrollTop = zieh.st - dy;
+      }
+      window.addEventListener("mouseup", function () { zieh = null; });
+      flaeche.addEventListener("click", function (e) { if (!bewegt) setzen(stufe >= 2.5 ? 1 : 2.5, e.clientX, e.clientY); });
+      flaeche.addEventListener("wheel", function (e) { if (e.ctrlKey || stufe > 1 || e.deltaY < 0) { e.preventDefault(); setzen(stufe * (e.deltaY < 0 ? 1.2 : 1 / 1.2), e.clientX, e.clientY); } }, { passive: false });
+      $$("[data-z]", lb).forEach(function (b) { b.onclick = function () { setzen(stufe + Number(b.dataset.z) * 0.75); }; });
+      function zu() {
+        lb.remove(); document.body.style.overflow = ""; document.removeEventListener("keydown", taste); window.removeEventListener("mousemove", ziehen);
+        $("#lupeBtn") && $("#lupeBtn").focus();
+      }
+      function taste(e) { if (e.key === "Escape") zu(); if (e.key === "+") setzen(stufe + 0.75); if (e.key === "-") setzen(stufe - 0.75); }
+      document.addEventListener("keydown", taste);
+      lb.querySelector(".lb-zu").onclick = zu;
+      lb.querySelector(".lb-zu").focus();
+    }
+    box.addEventListener("click", offnen);
+    // Lupe beim Überfahren (nur Maus)
+    box.addEventListener("mousemove", function (e) {
+      var bild = box.querySelector("img");
+      if (!bild) return;
+      var r = box.getBoundingClientRect();
+      bild.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + "% " + ((e.clientY - r.top) / r.height * 100) + "%";
+      box.classList.add("lupe-an");
+    });
+    box.addEventListener("mouseleave", function () { box.classList.remove("lupe-an"); });
+  }
+
+  /* ---------- Fachhändler ---------- */
+  var haendlerZustand = { land: "", q: "" };
+  function seiteHaendler() {
+    var laender = [];
+    HAENDLER.forEach(function (x) { if (laender.indexOf(x.land) < 0) laender.push(x.land); });
+    return '<div class="wrap seite"><h1>Fachhändler</h1>' +
+      '<p style="max-width:46em">Unsere Produkte erhalten Sie auch bei diesen Fachhändlern in ' + laender.length + " Ländern. Lassen Sie sich vor Ort beraten.</p>" +
+      '<div class="werkzeug"><div class="suche"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>' +
+      '<input type="text" id="hSuche" placeholder="Ort, PLZ oder Name suchen …" value="' + esc(haendlerZustand.q) + '" aria-label="Fachhändler suchen"></div></div>' +
+      '<div class="land-chips" role="group" aria-label="Land wählen"><button type="button" data-land="">Alle Länder <span>' + HAENDLER.length + "</span></button>" +
+      laender.map(function (l) {
+        return '<button type="button" data-land="' + esc(l) + '">' + esc(l) + " <span>" + HAENDLER.filter(function (x) { return x.land === l; }).length + "</span></button>";
+      }).join("") + "</div>" +
+      '<div id="hListe"></div></div>';
+  }
+  function haendlerZeichnen() {
+    var q = haendlerZustand.q.trim().toLowerCase();
+    var l = HAENDLER.filter(function (x) {
+      return (!haendlerZustand.land || x.land === haendlerZustand.land) &&
+        (!q || (x.name + " " + x.ort + " " + x.strasse + " " + x.kontakt).toLowerCase().indexOf(q) >= 0);
+    });
+    $$(".land-chips button").forEach(function (b) { b.classList.toggle("aktiv", b.dataset.land === haendlerZustand.land); });
+    var gruppen = {};
+    l.forEach(function (x) { (gruppen[x.land] = gruppen[x.land] || []).push(x); });
+    $("#hListe").innerHTML = l.length ? Object.keys(gruppen).map(function (land) {
+      return '<h2 class="land-titel">' + esc(land) + ' <small>' + gruppen[land].length + "</small></h2>" +
+        '<div class="haendler-raster">' + gruppen[land].map(function (x) {
+          var web = x.web ? (/^https?:/.test(x.web) ? x.web : "https://" + x.web) : "";
+          var tel = x.telefon ? x.telefon.replace(/[^\d+]/g, "") : "";
+          return '<div class="haendler"><h3>' + esc(x.name) + "</h3>" +
+            (x.kontakt ? '<div class="h-kontakt">' + esc(x.kontakt) + "</div>" : "") +
+            '<p class="h-adr">' + esc(x.strasse) + "<br>" + esc(x.ort) + "</p>" +
+            '<div class="h-links">' +
+            (x.telefon ? '<a href="tel:' + esc(tel) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>' + esc(x.telefon) + "</a>" : "") +
+            (x.email ? '<a href="mailto:' + esc(x.email) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>' + esc(x.email) + "</a>" : "") +
+            (web ? '<a href="' + esc(web) + '" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>' + esc(x.web.replace(/^https?:\/\//, "")) + "</a>" : "") +
+            "</div></div>";
+        }).join("") + "</div>";
+    }).join("") : '<div class="leer">Kein Fachhändler gefunden.</div>';
+  }
+  function haendlerAktionen() {
+    haendlerZeichnen();
+    $("#hSuche").oninput = function (e) { haendlerZustand.q = e.target.value; haendlerZeichnen(); };
+    $$(".land-chips button").forEach(function (b) { b.onclick = function () { haendlerZustand.land = b.dataset.land; haendlerZeichnen(); }; });
+  }
+
+  /* ---------- Downloads ---------- */
+  function seiteDownloads() {
+    var gruppen = [];
+    DOWNLOADS.forEach(function (d) { if (gruppen.indexOf(d.gruppe) < 0) gruppen.push(d.gruppe); });
+    return '<div class="wrap seite"><h1>Downloads</h1><p style="max-width:46em">Prospekte, Bedienungs- und Umbauanleitungen zum Herunterladen (PDF).</p>' +
+      gruppen.map(function (g) {
+        return '<h2 class="land-titel">' + esc(g) + "</h2>" + '<div class="dl-liste">' +
+          DOWNLOADS.filter(function (d) { return d.gruppe === g; }).map(function (d) {
+            return '<a class="dl" href="' + esc(d.url) + '" target="_blank" rel="noopener">' +
+              '<span class="dl-ic">PDF</span><span class="dl-t"><b>' + esc(d.titel) + "</b>" + (d.info ? "<span>" + esc(d.info) + "</span>" : "") + "</span>" +
+              '<span class="dl-pfeil">Öffnen <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg></span></a>';
+          }).join("") + "</div>";
+      }).join("") +
+      '<p style="margin-top:24px;color:var(--grau)">Sie benötigen eine Anleitung, die hier fehlt? Wir helfen gern weiter.</p>' + '<div style="max-width:460px">' + ansprechHtml(true) + "</div></div>";
+  }
+
   function seite404() {
     return '<div class="wrap seite"><h1>Seite nicht gefunden</h1><p><a class="btn" href="#start">Zur Startseite</a></p></div>';
   }
@@ -615,6 +805,8 @@
     else if (h === "leistungen") { html = seiteLeistungen(); navKey = "leistungen"; }
     else if (h === "kontakt") { html = seiteKontakt(); navKey = "kontakt"; }
     else if (h === "widerrufsformular") { html = seiteWiderrufsformular(); navKey = h; }
+    else if (h === "fachhaendler") { html = seiteHaendler(); navKey = h; }
+    else if (h === "downloads") { html = seiteDownloads(); navKey = h; }
     else if (["impressum", "datenschutz", "agb", "widerruf", "versand"].indexOf(h) >= 0) { html = seiteText(h); navKey = h; }
     else if (h === "inhalt") return;
     else html = seite404();
@@ -646,6 +838,8 @@
     if (h === "kasse") kasseAktionen();
     if (h === "leistungen") anfrageAktionen();
     if (h === "widerrufsformular") widerrufAktionen();
+    if (h === "fachhaendler") haendlerAktionen();
+    if (h.indexOf("p-") === 0) zoomAktionen();
     if (h === "start" || h === "") heroZugStart();
   }
 
@@ -841,8 +1035,8 @@
   document.addEventListener("change", fehlerWeg);
 
   /* ---------- Start ---------- */
-  function start(shop, katalog) {
-    SHOP = shop; KAT = katalog.kategorien; PROD = katalog.produkte;
+  function start(shop, katalog, haendler, downloads) {
+    SHOP = shop; KAT = katalog.kategorien; PROD = katalog.produkte; HAENDLER = haendler || []; DOWNLOADS = downloads || [];
     KORB = KORB.filter(function (z) { var p = finde(z.id); return p && !p.archiv; });
     $("#jahr").textContent = new Date().getFullYear();
     $("#fussAdresse").innerHTML = esc(SHOP.firma) + "<br>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "<br>Tel. " + esc(SHOP.telefon) + '<br><a href="mailto:' + esc(SHOP.email) + '">' + esc(SHOP.email) + "</a>";
@@ -864,10 +1058,11 @@
   if (inline) {
     var d = JSON.parse(inline.textContent);
     DEMO = !!d.demo;
-    start(d.shop, d.katalog);
+    start(d.shop, d.katalog, d.haendler, d.downloads);
   } else {
-    Promise.all([fetch("daten/shop.json").then(function (r) { return r.json(); }), fetch("daten/produkte.json").then(function (r) { return r.json(); })])
-      .then(function (r) { start(r[0], r[1]); })
+    var laden = function (f) { return fetch("daten/" + f).then(function (r) { return r.json(); }); };
+    Promise.all([laden("shop.json"), laden("produkte.json"), laden("haendler.json").catch(function () { return []; }), laden("downloads.json").catch(function () { return []; })])
+      .then(function (r) { start(r[0], r[1], r[2], r[3]); })
       .catch(function () { main.innerHTML = '<div class="wrap seite"><h1>Fehler beim Laden</h1><p>Der Artikelkatalog konnte nicht geladen werden. Bitte rufen Sie uns an: 07191 9127979</p></div>'; });
   }
 })();

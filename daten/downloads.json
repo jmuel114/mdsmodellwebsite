@@ -1,0 +1,50 @@
+[
+ {
+  "gruppe": "Prospekte",
+  "titel": "Neuheiten 2020",
+  "info": "Prospekt",
+  "url": "https://www.mds-modell.eu/files/web/doks/prospekte/Neuheiten-2020-03.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "N-RhB Ge 4/4 II (600XX) – Gebrauchsanweisung",
+  "info": "Stand 05.01.2018",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-600XX-N-RhB-Ge-4-4-II-Gebrauchsanweisung-2018-01-05.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "S-KuPLiX (21000) – Hinweise",
+  "info": "",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-21000-S-KuPLIX_Hinweis_PDF.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "Ge 4/4 II – Nachrüst-Decoder (60000.00)",
+  "info": "Deutsch · Stand 25.05.2018",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-60000.00-Nachruest-Decoder-2018-05-25.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "Ge 4/4 II – Replacement Decoder (60000.00)",
+  "info": "English · 26.08.2018",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-60000.00-Replacement-Decodert-englisch-2018-08-26.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "Ge 4/4 II – Nachrüst-Sounddecoder (60000.01)",
+  "info": "Deutsch · Stand 25.05.2018",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-60000.01-Nachruest-Sounddecoder-2018-05-25.pdf"
+ },
+ {
+  "gruppe": "Bedienungsanleitungen",
+  "titel": "Ge 4/4 II – Replacement Sound Decoder (60000.01)",
+  "info": "English · 05.01.2018",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/MDS-Modell-60000.01-Replacement-Sounddecoder%20-englisch-2018-01-05.pdf"
+ },
+ {
+  "gruppe": "Umbauanleitungen",
+  "titel": "S-KuPLiX am Panoramawagen",
+  "info": "Umbauanleitung",
+  "url": "https://www.mds-modell.eu/files/web/doks/downloads/S-KuPLiX-Panoramawagen-GBP.pdf"
+ }
+]

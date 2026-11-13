@@ -36,6 +36,10 @@ Voraussetzung: normaler Webspace mit **PHP 7.4 oder neuer** und funktionierender
 Jeder Artikel: `id` (= Artikelnummer), `name`, `kat`, `preis`, `ab`, `info`, `varianten`, `bild`, `archiv`.
 Neuer Artikel = Eintrag kopieren und anpassen. `"archiv": true` → wird als ausverkauft angezeigt und kann nicht bestellt werden.
 
+## Fachhändler & Downloads
+- Fachhändler: `daten/haendler.json` (Land, Name, Kontakt, Adresse, E-Mail, Website, Telefon)
+- Downloads: `daten/downloads.json`. Die PDFs liegen noch auf der alten Seite – vor dem Abschalten in einen Ordner `downloads/` kopieren und die Links anpassen.
+
 ## Produktfotos
 Die Fotos werden aktuell noch von der alten Seite geladen (`bildBasis`). **Bevor die alte Seite abgeschaltet wird:**
 Ordner `assets/images/` vom alten Contao-Webspace herunterladen, in den neuen Ordner `assets/images/` legen und
@@ -44,7 +48,7 @@ Ordner `assets/images/` vom alten Contao-Webspace herunterladen, in den neuen Or
 ## Noch zu erledigen
 - [ ] Aufpreise Digital / Digital+Sound in `shop.json` eintragen
 - [ ] Versandkosten je Land eintragen (Preisangabenverordnung: sollten vor der Bestellung sichtbar sein)
-- [ ] Texte für AGB, Widerrufsbelehrung, Datenschutz von der alten Seite übernehmen (in `assets/app.js`, Funktion `seiteText`, gelb markiert)
+- [ ] AGB von der alten Seite übernehmen (in `assets/app.js`, Funktion `seiteText`, gelb markiert)
+- [ ] Datenschutzerklärung: Abschnitt „Hosting“ (gelb markiert) mit dem tatsächlichen Hoster ergänzen; Datenschutz- und Widerrufstext rechtlich prüfen lassen
 - [ ] AGB-Abschnitt „Vertragsschluss“ an Online-Bestellung anpassen (rechtlich prüfen lassen)
 - [ ] USt-IdNr. im Impressum ergänzen
-- [ ] Optional: Google Fonts lokal einbinden (Datenschutz)
