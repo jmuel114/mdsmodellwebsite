@@ -684,3 +684,16 @@ html,body{overflow-x:hidden}
 .schritt-lok{top:13px}
 .karte-box{margin-top:40px}
 .hero .btn-2{background:#4d4c49;border-color:#4d4c49;color:#fff}.hero .btn-2:hover{background:#3a3937;border-color:#3a3937;color:#fff}
+
+/* Schritte: alle sofort sichtbar, Lok + wachsende Nummern */
+.schritte::before{transform:none !important;transition:none !important}
+.schritte li,.schritte.sichtbar li{opacity:1 !important;transform:none !important;transition:none !important}
+.schritte .nr,.schritte.sichtbar .nr{transform:none;transition:background .3s,box-shadow .3s;background:#c9c9c9;box-shadow:0 0 0 2px #c9c9c9}
+.schritte li.aktiv .nr{background:var(--rot);box-shadow:0 0 0 2px var(--rot);animation:nr-gross .7s cubic-bezier(.3,1.5,.5,1) forwards}
+.schritte li b{transition:color .3s}
+.schritte li.aktiv b{color:var(--rot)}
+@keyframes nr-gross{0%{transform:scale(1)}55%{transform:scale(1.4)}100%{transform:scale(1.15)}}
+.schritt-lok{left:-80px;opacity:0;transition:none;top:13px;z-index:3}
+.schritte.sichtbar .schritt-lok{left:auto}
+@media (prefers-reduced-motion:reduce){.schritte .nr{background:var(--rot);box-shadow:0 0 0 2px var(--rot)}.schritte li.aktiv .nr{animation:none}}
+.schritte{padding-top:8px}

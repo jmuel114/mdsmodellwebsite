@@ -1180,13 +1180,48 @@
     };
   }
 
+  /* Vier Schritte: Lok fährt von Station zu Station, die erreichte Nummer wird groß */
   function schritteAnimieren() {
     var ol = $(".schritte");
     if (!ol) return;
-    if (!("IntersectionObserver" in window)) { ol.classList.add("sichtbar"); return; }
+    var lok = ol.querySelector(".schritt-lok");
+    var li = $$("li", ol);
+    var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function alleAn() { li.forEach(function (x) { x.classList.add("aktiv"); }); }
+    if (ruhig || !lok || getComputedStyle(lok).display === "none") {
+      // Handy: Nummern nacheinander hervorheben, ohne Lok
+      if (ruhig) return alleAn();
+    }
+    function stationX(i) {
+      var o = ol.getBoundingClientRect(), n = li[i].querySelector(".nr").getBoundingClientRect();
+      return n.left - o.left - lok.offsetWidth / 2 - 8; // Lok hält direkt vor der Nummer
+    }
+    function fahren() {
+      var mitLok = lok && getComputedStyle(lok).display !== "none";
+      var i = 0;
+      if (mitLok) {
+        lok.style.transition = "none";
+        lok.style.left = "-" + lok.offsetWidth + "px";
+        lok.style.opacity = "1";
+        void lok.offsetWidth;
+      }
+      (function weiter() {
+        if (i >= li.length) return;
+        if (mitLok) {
+          lok.style.transition = "left " + (i === 0 ? 1 : 1.1) + "s cubic-bezier(.45,.05,.35,1)";
+          lok.style.left = stationX(i) + "px";
+        }
+        setTimeout(function () {
+          li[i].classList.add("aktiv");
+          i++;
+          setTimeout(weiter, 450);
+        }, mitLok ? (i === 0 ? 1000 : 1100) : 350);
+      })();
+    }
+    if (!("IntersectionObserver" in window)) return fahren();
     var io = new IntersectionObserver(function (e) {
-      if (e[0].isIntersecting) { ol.classList.add("sichtbar"); io.disconnect(); }
-    }, { threshold: 0.35 });
+      if (e[0].isIntersecting) { io.disconnect(); fahren(); }
+    }, { threshold: 0.5 });
     io.observe(ol);
   }
 
