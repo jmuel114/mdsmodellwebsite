@@ -175,13 +175,17 @@
       var p = finde(z.id);
       if (!p || p.archiv) return null;
       var ep = preisFuer(p, z.variante);
-      return { z: z, p: p, ep: ep, summe: ep === null ? null : ep * z.menge };
+      // Aufpreis unbekannt: Grundpreis anzeigen und rechnen, Vermerk „zzgl. Aufpreis auf Anfrage“
+      var auf = ep === null;
+      var e = auf ? p.preis : ep;
+      return { z: z, p: p, ep: e, aufpreis: auf, summe: e * z.menge };
     }).filter(Boolean);
   }
   function korbSumme() {
     var pos = korbPositionen(), s = 0, smin = 0, offen = false;
     pos.forEach(function (x) {
-      if (x.summe === null) { offen = true; smin += x.p.preis * x.z.menge; } else { s += x.summe; smin += x.summe; }
+      if (x.aufpreis) offen = true;
+      s += x.summe; smin += x.summe;
     });
     return { pos: pos, summe: s, summeMin: smin, offen: offen };
   }
@@ -303,7 +307,7 @@
         p.varianten.map(function (v, i) {
           var pr = preisFuer(p, v);
           return '<label><input type="radio" name="var" value="' + esc(v) + '"' + (i === 0 ? " checked" : "") + '><b>' + esc(v) + "</b><span>" +
-            (pr === null ? "Aufpreis auf Anfrage" : euro(pr)) + "</span></label>";
+            (pr === null ? euro(p.preis) + "<br><small>zzgl. Aufpreis auf Anfrage</small>" : euro(pr)) + "</span></label>";
         }).join("") + "</div></div>";
     }
     var kauf = p.archiv
@@ -345,10 +349,10 @@
       r.pos.map(function (x, i) {
         return '<div class="zeile"><div class="bild">' + bildHtml(x.p) + '</div><div class="zt"><h3><a href="#p-' + x.p.id + '">' + esc(x.p.name) + "</a></h3>" +
           '<span class="artnr">Art.-Nr. ' + esc(artNr(x.p)) + (x.z.variante ? " · " + esc(x.z.variante) : "") + "</span><br>" +
-          '<span class="artnr">Einzelpreis: ' + (x.ep === null ? "Aufpreis auf Anfrage" : euro(x.ep)) + "</span><br>" +
+          '<span class="artnr">Einzelpreis: ' + euro(x.ep) + "</span>" + (x.aufpreis ? '<span class="aufpreis-hinweis">zzgl. Aufpreis auf Anfrage</span>' : "") + "<br>" +
           '<button class="link-btn" data-weg="' + i + '">Entfernen</button></div>' +
           '<div class="menge"><button type="button" data-z="' + i + '" data-m="-1" aria-label="weniger">−</button><input type="number" min="1" max="99" value="' + x.z.menge + '" data-zi="' + i + '" aria-label="Menge"><button type="button" data-z="' + i + '" data-m="1" aria-label="mehr">+</button></div>' +
-          '<div class="sum">' + (x.summe === null ? "–" : euro(x.summe)) + "</div></div>";
+          '<div class="sum">' + euro(x.summe) + (x.aufpreis ? "*" : "") + "</div></div>";
       }).join("") +
       "</div>" + summenBox(r, true) + "</div></div>";
   }
@@ -359,7 +363,7 @@
       '<div class="z"><span>Zwischensumme</span><span>' + euro(r.summe) + (r.offen ? "*" : "") + "</span></div>" +
       '<div class="z"><span>Versand</span><span>' + versandText() + "</span></div>" +
       '<div class="z gesamt"><span>Summe</span><span>' + euro(r.summe) + (r.offen ? "*" : "") + "</span></div>" +
-      '<p class="klein">Alle Preise inkl. gesetzl. MwSt.' + (r.offen ? "<br>* zzgl. Aufpreis für Digital-/Sound-Ausführung – wird mit der Vorausrechnung bestätigt." : "") + "</p>" +
+      '<p class="klein">Alle Preise inkl. gesetzl. MwSt.' + (r.offen ? "<br>* zzgl. Aufpreis auf Anfrage für die Digital-/Sound-Ausführung – wir nennen Ihnen den genauen Preis mit der Rechnung." : "") + "</p>" +
       (unterMin ? '<div class="hinweisbox">Mindestbestellwert: ' + euro(min) + "</div>" : "") +
       (mitKnopf ? '<a class="btn btn-gross" href="#kasse"' + (unterMin ? ' aria-disabled="true" style="pointer-events:none;opacity:.45"' : "") + ">Zur Kasse</a>" +
         "" : "") +
@@ -407,7 +411,7 @@
       '<input class="hp" type="text" name="webseite" tabindex="-1" autocomplete="off" aria-hidden="true">' +
       "</div></div>" +
       "<div>" + summenBox(r, false).replace("<h3>Übersicht</h3>", "<h3>Ihre Bestellung</h3>" + r.pos.map(function (x) {
-        return '<div class="mini"><span>' + x.z.menge + "× " + esc(x.p.name) + (x.z.variante ? " (" + esc(x.z.variante) + ")" : "") + "</span><span>" + (x.summe === null ? "–" : euro(x.summe)) + "</span></div>";
+        return '<div class="mini"><span>' + x.z.menge + "× " + esc(x.p.name) + (x.z.variante ? " (" + esc(x.z.variante) + ")" : "") + (x.aufpreis ? '<br><small class="aufpreis-hinweis">zzgl. Aufpreis auf Anfrage</small>' : "") + "</span><span>" + euro(x.summe) + (x.aufpreis ? "*" : "") + "</span></div>";
       }).join("")).replace("</aside>",
         '<div class="feld" data-f="agb" style="margin-top:6px"><label class="check"><input type="checkbox" name="agb" id="f-agb"><span>Ich habe die <a href="#agb" target="_blank">AGB</a> und die <a href="#widerruf" target="_blank">Widerrufsbelehrung</a> gelesen. Hinweise zum Datenschutz finden Sie in der <a href="#datenschutz" target="_blank">Datenschutzerklärung</a>.</span></label><div class="fehltext">Bitte bestätigen.</div></div>' +
         '<button class="btn btn-gross" type="submit" id="absenden">Zahlungspflichtig bestellen</button>' +
@@ -989,7 +993,7 @@
       var r = $('input[name="var"]:checked');
       if (!r) return;
       var pr = preisFuer(p, r.value);
-      $("#dPreis").innerHTML = pr === null ? "<small>ab</small>" + euro(p.preis) + ' <small>+ Aufpreis</small>' : euro(pr);
+      $("#dPreis").innerHTML = pr === null ? euro(p.preis) + ' <small>zzgl. Aufpreis auf Anfrage</small>' : euro(pr);
       $("#aufpreisHinweis").style.display = pr === null ? "block" : "none";
     }
     $$('input[name="var"]').forEach(function (r) { r.onchange = aktualisieren; });
@@ -1072,9 +1076,9 @@
       var k = daten.kunde, r = korbSumme();
       var artikel = r.pos.map(function (x, i) {
         return (i + 1) + ") " + x.z.menge + " × " + x.p.name + " [Art.-Nr. " + artNr(x.p) + "]" + (x.z.variante ? " – " + x.z.variante : "") +
-          " – " + (x.ep === null ? "Preis auf Anfrage" : euro(x.ep) + " = " + euro(x.summe));
+          " – " + euro(x.ep) + " = " + euro(x.summe) + (x.aufpreis ? " (zzgl. Aufpreis auf Anfrage)" : "");
       }).join("\n");
-      var summe = euro(r.summe) + (r.offen ? " zzgl. Aufpreis Digital/Sound (wird bestätigt)" : "") + ", zzgl. Versand – inkl. MwSt.";
+      var summe = euro(r.summe) + (r.offen ? " zzgl. Aufpreis auf Anfrage (Digital/Sound)" : "") + ", zzgl. Versand – inkl. MwSt.";
       felder = {
         _subject: "Bestellung " + nr + " – " + k.vorname + " " + k.nachname,
         Bestellnummer: nr,

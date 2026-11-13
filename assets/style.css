@@ -572,3 +572,5 @@ img.ansprech-bild{object-fit:cover;padding:0}
 .hero-zug{right:auto;left:4%;animation:einfahrt-links 2.4s cubic-bezier(.2,.65,.3,1) .2s both}
 .hero-zug .rad{animation:rollen .45s linear .2s 5}
 @keyframes einfahrt-links{from{transform:translateX(calc(-100% - 5vw))}to{transform:none}}
+.aufpreis-hinweis{display:block;color:var(--rot);font-size:.88rem;font-weight:600}
+.variante .wahl small{font-size:.78rem;color:var(--rot)}

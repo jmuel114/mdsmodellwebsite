@@ -172,12 +172,14 @@ foreach ((array)($in['positionen'] ?? []) as $pos) {
     if (!empty($p['archiv'])) continue;
     $menge = max(1, min(99, (int)($pos['menge'] ?? 1)));
     $variante = (string)($pos['variante'] ?? '');
+    $aufAnfrage = false;
     $ep = (float)$p['preis'];
     if (count($p['varianten']) > 0) {
         if (!in_array($variante, $p['varianten'], true)) $variante = $p['varianten'][0];
         $auf = $shop['aufpreis'][$variante] ?? null;
+        $aufAnfrage = false;
         if ($variante !== $p['varianten'][0]) {
-            if ($auf === null) { $ep = null; $offen = true; }
+            if ($auf === null) { $aufAnfrage = true; $offen = true; } // Grundpreis + Vermerk
             else $ep += (float)$auf;
         }
     } else {
@@ -185,10 +187,10 @@ foreach ((array)($in['positionen'] ?? []) as $pos) {
     }
     $positionen[] = [
         'id' => $id, 'name' => $p['name'], 'variante' => $variante, 'menge' => $menge,
-        'einzel' => $ep, 'gesamt' => $ep === null ? null : $ep * $menge,
+        'einzel' => $ep, 'gesamt' => $ep * $menge, 'aufpreis_auf_anfrage' => $aufAnfrage ?? false,
     ];
-    if ($ep !== null) $summe += $ep * $menge;
-    $summeMin += ($ep ?? (float)$p['preis']) * $menge;
+    $summe += $ep * $menge;
+    $summeMin += $ep * $menge;
 }
 if (!$positionen) fehler('Der Warenkorb ist leer.');
 if ($summeMin < (float)($shop['mindestbestellwert'] ?? 0)) fehler('Der Mindestbestellwert wurde nicht erreicht.');
@@ -203,16 +205,15 @@ $datum = date('d.m.Y, H:i') . ' Uhr';
 // ---- Positionstabelle (Text) ----
 $tab = '';
 foreach ($positionen as $i => $p) {
-    $tab .= sprintf("%d) %s\n   Art.-Nr. %s%s\n   %d × %s = %s\n\n",
+    $tab .= sprintf("%d) %s\n   Art.-Nr. %s%s\n   %d × %s = %s%s\n\n",
         $i + 1, $p['name'], strtoupper($p['id']),
         $p['variante'] ? ' · Ausführung: ' . $p['variante'] : '',
-        $p['menge'],
-        $p['einzel'] === null ? 'Preis auf Anfrage' : euro($p['einzel']),
-        $p['gesamt'] === null ? 'wird bestätigt' : euro($p['gesamt'])
+        $p['menge'], euro($p['einzel']), euro($p['gesamt']),
+        $p['aufpreis_auf_anfrage'] ? '  (zzgl. Aufpreis auf Anfrage)' : ''
     );
 }
 $tab .= str_repeat('-', 44) . "\n";
-$tab .= 'Warensumme:    ' . euro($summe) . ($offen ? ' (zzgl. Aufpreis Digital/Sound, wird bestätigt)' : '') . "\n";
+$tab .= 'Warensumme:    ' . euro($summe) . ($offen ? ' (zzgl. Aufpreis auf Anfrage für Digital/Sound)' : '') . "\n";
 $tab .= 'Versand:       ' . ($versandkosten === null ? 'wird gesondert berechnet' : euro($versandkosten)) . "\n";
 if ($versandkosten !== null && !$offen) $tab .= 'Gesamt:        ' . euro($summe + $versandkosten) . "\n";
 $tab .= "Alle Preise inkl. gesetzl. MwSt.\n";
