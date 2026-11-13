@@ -682,3 +682,4 @@ html,body{overflow-x:hidden}
 @media (prefers-reduced-motion:reduce){.schritte li,.schritte .nr,.schritte::before,.schritt-lok{transition:none !important;opacity:1;transform:none}.schritt-lok{display:none}}
 .schritt-lok{z-index:0;top:4px}.schritte.sichtbar .schritt-lok{left:77%}.schritte li{position:relative;z-index:1}
 .schritt-lok{top:13px}
+.karte-box{margin-top:40px}

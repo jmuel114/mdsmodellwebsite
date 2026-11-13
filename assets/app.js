@@ -813,12 +813,13 @@
       laender.map(function (l) {
         return '<button type="button" data-land="' + esc(l) + '">' + esc(l) + " <span>" + HAENDLER.filter(function (x) { return x.land === l; }).length + "</span></button>";
       }).join("") + "</div>" +
+      '<div id="hListe"></div>' +
       '<div class="karte-box" id="hKarte"><div class="karte-frage">' +
       '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
       "<h3>Karte der Fachhändler</h3><p>Zum Anzeigen der Karte werden Kartenausschnitte von OpenStreetMap geladen. Dabei wird Ihre IP-Adresse an die OpenStreetMap Foundation übertragen (<a href=\"#datenschutz\">Datenschutz</a>).</p>" +
       '<button type="button" class="btn" id="karteLaden">Karte anzeigen</button>' +
       '<label class="check" style="justify-content:center;margin-top:12px"><input type="checkbox" id="karteMerken"><span>Karte künftig immer anzeigen</span></label></div></div>' +
-      '<div id="hListe"></div></div>';
+      '</div>';
   }
 
   /* Karte (Leaflet + OpenStreetMap), erst nach Klick geladen */
