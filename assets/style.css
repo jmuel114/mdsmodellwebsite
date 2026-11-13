@@ -418,3 +418,6 @@ label{font-size:1rem}
 
 .hero-zug svg{will-change:transform}
 .hero{overflow:hidden}
+.ansprech .ansprech-tel{display:inline-block;margin-top:4px;font-weight:700;font-size:1.15rem;color:var(--rot);text-decoration:none}
+img.ansprech-bild{object-fit:cover;padding:0}
+.summe .ansprech{margin:10px 0 18px}

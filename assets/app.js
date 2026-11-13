@@ -187,13 +187,13 @@
   }
 
   /* ---------- Seiten ---------- */
-  var VORTEILE =
+  function vorteile() { return (
     '<div class="vorteile wrap" style="padding:0;max-width:none">' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg><span><b>Eigene Sonderserien</b>RhB-Modelle aus Auenwald</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16v8H4zM8 8V5M12 8V5M16 8V5M8 16v3M12 16v3M16 16v3"/></svg><span><b>Werkstatt-Service</b>Digitalumbau &amp; Decoder</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span><b>Versand mit DHL</b>Oder Abholung in Auenwald</span></div>' +
-    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><b>Persönliche Beratung</b>' + "07191 9127979" + "</span></div>" +
-    "</div>";
+    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><b>Persönliche Beratung</b>' + esc(SHOP.ansprechpartner || SHOP.inhaber) + " · " + esc(SHOP.telefon) + "</span></div>" +
+    "</div>"); }
 
   function seiteStart() {
     var neu = PROD.filter(function (p) { return !p.archiv; });
@@ -207,7 +207,7 @@
       '<div class="knoepfe"><a class="btn" href="#spur-n">Spur N entdecken</a><a class="btn btn-2" href="#spur-g">Zubehör Spur G</a></div>' +
       "</div></div>" +
       '<div class="hero-strecke" aria-hidden="true"><div class="hero-draht"></div><div class="hero-gleis"></div><div class="hero-zug">' + SVG_LOK + "</div></div></section>" +
-      VORTEILE +
+      vorteile() +
       '<section class="band"><div class="wrap">' +
       '<div class="kopfzeile"><div><span class="ueberzeile">Sortiment</span><h2>Zwei Spurweiten, eine Leidenschaft</h2></div></div>' +
       '<div class="spuren">' +
@@ -322,7 +322,9 @@
       (p.info ? "<div><dt>Ausführung</dt><dd>" + esc(p.info) + "</dd></div>" : "") +
       (hatVar ? "<div><dt>Varianten</dt><dd>" + esc(p.varianten.join(" · ")) + "</dd></div>" : "") +
       (!p.archiv ? "<div><dt>Lieferzeit</dt><dd>" + esc(SHOP.lieferzeit) + "</dd></div>" : "") +
-      "</dl></div></div>" +
+      "</dl>" +
+      '<div style="margin-top:24px"><p style="margin-bottom:8px"><b>Fragen zu diesem Artikel?</b> Wir beraten Sie gern.</p>' + ansprechHtml(true) + "</div>" +
+      "</div></div>" +
       aehnliche(p) + "</div>";
   }
   function aehnliche(p) {
@@ -420,7 +422,7 @@
       (b.demo ? '<div class="hinweisbox gelb" style="text-align:left"><b>Vorschau-Modus:</b> In dieser Vorschau wird keine E-Mail verschickt. Auf dem echten Webserver geht die Bestellung an <b>' + esc(SHOP.bestell_email) + "</b> und der Kunde erhält eine Eingangsbestätigung.</div>" : "") +
       "<p>Wir haben Ihre Bestellung erhalten" + (b.email ? " und eine Bestätigung an <b>" + esc(b.email) + "</b> gesendet" : "") + ". " +
       "Sie bekommen in Kürze eine Rechnung mit Versandkosten und unserer Bankverbindung. Nach Zahlungseingang versenden wir die Ware.</p>" +
-      "<p>Fragen? Rufen Sie uns an: <b>" + esc(SHOP.telefon) + "</b></p>" +
+      '<div style="max-width:420px;margin:0 auto 10px;text-align:left">' + ansprechHtml(true) + "</div>" +
       '<a class="btn btn-2" href="#shop" style="margin-top:12px">Weiter einkaufen</a></div>';
   }
 
@@ -437,7 +439,21 @@
       '<input class="hp" type="text" name="webseite" tabindex="-1" autocomplete="off" aria-hidden="true">' +
       '<div class="feld" data-f="ds"><label class="check"><input type="checkbox" name="ds"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden (<a href="#datenschutz">Datenschutz</a>).</span></label><div class="fehltext">Bitte bestätigen.</div></div>' +
       '<button class="btn" type="submit">Anfrage absenden</button><div id="anfrageMeldung" style="margin-top:14px"></div></form>' +
-      '<aside class="summe"><h3>Lieber persönlich?</h3><p>Wir beraten Sie gern am Telefon.</p><p style="font:700 1.5rem var(--kopf)">' + esc(SHOP.telefon) + "</p>" + zeitenHtml() + "</aside></div></div>";
+      '<aside class="summe"><h3>Lieber persönlich?</h3><p>Wir beraten Sie gern am Telefon.</p>' + ansprechHtml(true) + zeitenHtml() + "</aside></div></div>";
+  }
+
+  /** Kasten mit Ansprechpartner – überall, wo Beratung angeboten wird */
+  function ansprechHtml(mitTelefon) {
+    var name = SHOP.ansprechpartner || SHOP.inhaber;
+    var init = name.split(" ").map(function (w) { return w.charAt(0); }).join("");
+    var bild = SHOP.ansprechpartnerFoto && !DEMO
+      ? '<img class="ansprech-bild" src="' + esc(SHOP.ansprechpartnerFoto) + '" alt="' + esc(name) + '">'
+      : '<div class="ansprech-bild" aria-hidden="true">' + esc(init) + "</div>";
+    return '<div class="ansprech">' + bild +
+      '<div><span class="ueberzeile" style="margin:0">Ihr Ansprechpartner</span><b>' + esc(name) + "</b>" +
+      "<span>" + esc(SHOP.ansprechpartnerRolle || "Inhaber") + "</span>" +
+      (mitTelefon ? '<a class="ansprech-tel" href="tel:+4971919127979">' + esc(SHOP.telefon) + "</a>" : "") +
+      "</div></div>";
   }
 
   function zeitenHtml() {
@@ -460,9 +476,7 @@
     var maps = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SHOP.strasse + ", " + SHOP.ort);
     return '<div class="wrap seite"><span class="ueberzeile">Telefonische Unterstützung und Beratung</span><h1>Kontakt</h1><div class="kontakt">' +
       '<div class="block"><h2>' + esc(SHOP.firma) + "</h2><p>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "</p>" +
-      '<div class="ansprech"><div class="ansprech-bild" aria-hidden="true">' + esc((SHOP.ansprechpartner || SHOP.inhaber).split(" ").map(function (w) { return w.charAt(0); }).join("")) + '</div>' +
-      '<div><span class="ueberzeile" style="margin:0">Ihr Ansprechpartner</span><b>' + esc(SHOP.ansprechpartner || SHOP.inhaber) + "</b>" +
-      "<span>" + esc(SHOP.ansprechpartnerRolle || "Inhaber") + "</span></div></div>" +
+      ansprechHtml() +
       '<p>Telefon: <a href="tel:+4971919127979">' + esc(SHOP.telefon) + "</a><br>Fax: " + esc(SHOP.fax) + '<br>E-Mail: <a href="mailto:' + esc(SHOP.email) + '">' + esc(SHOP.email) + "</a></p>" +
       '<h3 style="margin-top:22px">Öffnungszeiten</h3>' + zeitenHtml() + "</div>" +
       '<div class="block"><figure class="kontakt-foto">' + kontaktFoto() + '<figcaption>' + esc(SHOP.kontaktFotoText || "") + "</figcaption></figure>" +
@@ -519,7 +533,7 @@
       '<input class="hp" type="text" name="webseite" tabindex="-1" autocomplete="off" aria-hidden="true">' +
       '<button class="btn btn-gross" type="submit">Widerruf jetzt absenden</button><div id="widerrufMeldung" style="margin-top:14px"></div></form>' +
       '<aside class="summe"><h3>Rücksendung</h3><p>Bitte senden Sie die Ware an:</p><p><b>' + esc(SHOP.firma) + "</b><br>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "</p>" +
-      '<p>Fragen? Rufen Sie uns an:<br><b style="font-size:1.25rem">' + esc(SHOP.telefon) + "</b></p></aside></div></div>";
+      "<p>Fragen? Wir beraten Sie gern:</p>" + ansprechHtml(true) + "</aside></div></div>";
   }
 
   function widerrufAktionen() {

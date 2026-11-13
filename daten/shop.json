@@ -47,5 +47,7 @@
  "kontaktFotoText": "Unsere RhB Ge 4/4 II 617 „Ilanz“ in Spur N",
  "_kontaktFoto_hinweis": "Foto auf der Kontaktseite. Am besten ein eigenes Foto (Laden, Werkstatt, Anlage) als bilder/kontakt.jpg hochladen und hier 'bilder/kontakt.jpg' eintragen.",
  "ansprechpartner": "Gunnar Müller",
- "ansprechpartnerRolle": "Inhaber · Beratung & Werkstatt"
+ "ansprechpartnerRolle": "Inhaber",
+ "ansprechpartnerFoto": "",
+ "_ansprechpartnerFoto_hinweis": "Porträtfoto, z. B. 'bilder/gunnar-mueller.jpg'. Leer = Kreis mit Initialen."
 }
