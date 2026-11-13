@@ -134,14 +134,14 @@
   function karte(p) {
     var unten = p.archiv
       ? '<span class="ausverkauft">Ausverkauft</span><span class="preis" style="color:var(--grau-h);font-size:1.1rem">' + euro(p.preis) + "</span>"
-      : '<span class="preis">' + preisAnzeige(p) + "</span>";
+      : '<span class="preis">' + preisAnzeige(p) + '</span><span class="mwst-k">inkl. MwSt., zzgl. Versand</span>';
     return '<a class="karte" href="#p-' + p.id + '">' +
       '<div class="bild">' + marke(p) + bildHtml(p) + "</div>" +
       '<div class="karte-text"><span class="artnr">Art.-Nr. ' + esc(artNr(p)) + "</span>" +
       "<h3>" + esc(p.name) + "</h3>" +
       (p.info ? '<p class="info">' + esc(p.info) + "</p>" : "") +
       (p.varianten.length > 1 && !p.archiv ? '<span class="chips-var"><span>analog</span><span>digital</span><span>digital + Sound</span></span>' : "") +
-      '<div class="preiszeile">' + unten + "</div></div></a>";
+      '<div class="preiszeile">' + unten + '</div><span class="details">Details</span></div></a>';
   }
 
   /* ---------- Warenkorb ---------- */
@@ -151,6 +151,8 @@
   function korbZaehler(puls) {
     var el = $("#korbZahl"), n = korbAnzahl();
     el.textContent = n;
+    var kt = $("#korbText");
+    if (kt && PROD.length) { var ks = korbSumme(); kt.textContent = n + " Artikel | " + euro(ks.summe); }
     el.classList.toggle("null", n === 0);
     if (puls) { el.classList.remove("puls"); void el.offsetWidth; el.classList.add("puls"); }
   }
@@ -195,9 +197,9 @@
     var nAnz = neu.filter(function (p) { return spurVon(p) === "N"; }).length;
     var gAnz = neu.filter(function (p) { return spurVon(p) === "G"; }).length;
     return '<section class="hero"><div class="hero-schleier"></div><div class="wrap hero-in"><div>' +
-      '<span class="ueber">Herzlich Willkommen bei mds-modell.eu</span>' +
-      "<h1>Die Rhätische Bahn im Maßstab 1:160.</h1>" +
-      "<p>Eigene Sonderserien der Ge 4/4 II in Baugröße N – analog, digital oder mit Sound. Dazu S-KuPLiX-Kupplungen, Weichenlaternen und Ersatzteile für die Gartenbahn.</p>" +
+      '<span class="ueber"><span class="etikett">Herzlich Willkommen bei mds-modell.eu</span></span>' +
+      '<h1><span class="etikett">Die Rhätische Bahn in Spur N</span></h1>' +
+      '<p><span class="etikett">Eigene Sonderserien der Ge 4/4 II – analog, digital oder mit Sound. Dazu Kupplungen, Weichenlaternen und Ersatzteile für die Gartenbahn.</span></p>' +
       '<div class="knoepfe"><a class="btn" href="#spur-n">Spur N entdecken</a><a class="btn btn-2" href="#spur-g">Zubehör Spur G</a></div>' +
       "</div><div></div></div></section>" +
       VORTEILE +

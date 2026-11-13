@@ -5,8 +5,8 @@
   --tinte:#333333; --grau:#636363; --grau-h:#949494;
   --gelb:#e7b531; --gruen:#2f6b3f;
   --r:6px; --schatten:0 1px 2px rgba(28,26,23,.06),0 6px 20px rgba(28,26,23,.06);
-  --kopf:"Lato",system-ui,sans-serif;
-  --text:"Lato",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --kopf:"Open Sans",Arial,system-ui,sans-serif;
+  --text:"Open Sans",Arial,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -287,3 +287,85 @@ textarea{min-height:110px;resize:vertical}
 .hero .ueber{font-family:var(--text);font-weight:700}
 @media (max-width:760px){.nav{top:84px}.logo img{height:34px}.hero-in{padding:56px 20px}}
 .brot{display:none}
+
+/* ===== Professioneller Stil (angelehnt an Hersteller-Shops), gut lesbar für 50+ ===== */
+:root{--r:0;--tinte:#333;--grau:#555;--grau-h:#777;--linie:#dcdcdc;--creme:#f2f2f2}
+body{font-size:18px;line-height:1.65;color:#474747;letter-spacing:.01em}
+h1,h2,h3,h4{letter-spacing:0;color:#333}
+h1{font-size:clamp(1.9rem,3.4vw,2.4rem);font-weight:600;color:#333}
+h2{font-size:clamp(1.6rem,2.8vw,2rem);font-weight:400;color:#333}
+h3{font-weight:600}
+*{border-radius:0 !important}
+.korb-zahl,.danke .haken,.block h2 i{border-radius:50% !important}
+.topbar{font-size:.9rem}
+.kopf{box-shadow:none;border-bottom:1px solid var(--linie)}
+.kopf-in{height:96px}
+.logo img{height:52px}
+.nav a{font-size:1.05rem;padding:8px 14px;color:#333}
+.korb-btn{background:var(--rot);color:#fff;border:0;padding:12px 18px;font-weight:600;font-size:.95rem;position:relative}
+.korb-btn:hover{background:var(--rot-d);color:#fff}
+.korb-btn .korb-zahl{position:absolute;top:-9px;right:-9px;background:#fff;color:var(--rot);border:1px solid var(--rot);min-width:22px;height:22px}
+.korb-btn .korb-zahl.null{background:#fff;color:var(--rot)}
+.btn{font-weight:600;font-size:1.05rem;padding:13px 24px}
+.btn::after{content:"›";font-size:1.4em;line-height:0;margin-left:6px;font-weight:400}
+.btn-2::after,.btn-gross::after,.btn-ohne::after{content:none}
+.btn-2{border-width:1px}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{font-size:1.05rem;padding:13px 14px;border-color:#bdbdbd}
+label{font-size:1rem}
+.check,.wahl label{font-size:1rem}
+.wahl span,.feld small{font-size:.92rem}
+/* Hero mit Etiketten wie im Katalog */
+.hero .hero-schleier{background:linear-gradient(90deg,rgba(0,0,0,.45) 0,rgba(0,0,0,.15) 60%,rgba(0,0,0,0) 100%)}
+.hero-in{padding:120px 20px 90px;grid-template-columns:1fr}
+.hero .etikett{display:inline;background:rgba(0,0,0,.65);color:#fff;padding:4px 12px;box-decoration-break:clone;-webkit-box-decoration-break:clone;line-height:1.6}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:22em}
+.hero .ueber{font-size:.95rem;letter-spacing:.08em;color:#fff;margin-bottom:10px}
+.hero p{max-width:38em;font-size:1.1rem}
+.hero p .etikett{background:rgba(0,0,0,.55);line-height:1.9}
+/* Vorteile */
+.vorteile{background:#fff}
+.vorteile div{font-size:1rem}
+.vorteile b{font-family:var(--text);font-size:1.05rem;font-weight:700}
+/* Sortiment */
+.band{padding:56px 0}
+.band-weiss{background:var(--creme);border:0}
+.spur{background:#fff;border:1px solid var(--linie)}
+.spur-schild{border-radius:0 !important;width:84px;height:84px;font:700 2.4rem/1 var(--text);border:0;box-shadow:none}
+.spur:nth-child(2) .spur-schild{box-shadow:none}
+.spur li{border-radius:0 !important;background:var(--creme)}
+.ueberzeile{color:var(--grau);letter-spacing:.1em;font-size:.85rem}
+/* Produktkarten im Shop-Stil */
+.raster{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+.karte{background:#f6f6f6;border:1px solid #e6e6e6;transition:box-shadow .15s}
+.karte:hover{transform:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.bild{background:#fff}
+.karte-text{padding:16px 16px 18px;gap:4px}
+.artnr{font-size:.9rem;color:#555}
+.karte h3{font-weight:400;font-size:1.05rem;line-height:1.35;color:#333}
+.karte .info{font-size:.92rem}
+.chips-var span{font-size:.78rem}
+.preiszeile{flex-direction:column;align-items:flex-start;gap:0;padding-top:14px}
+.preis{font:600 1.6rem var(--text);color:#333}
+.preis small{font-weight:400}
+.mwst-k{font-size:.85rem;color:#555;margin-bottom:12px}
+.details{display:block;background:var(--rot);color:#fff;font-weight:600;font-size:1rem;padding:10px 14px;margin-top:4px}
+.karte:hover .details{background:var(--rot-d)}
+.marke{font:600 .75rem var(--text);letter-spacing:.06em}
+/* Seitenleiste */
+.seitenleiste a{font-size:1rem}
+.seitenleiste a.aktiv{background:var(--rot)}
+.titelband b{font-size:1.3rem}
+/* Detail */
+.detail .preis{font-size:2.2rem}
+.variante .wahl label{font-size:1rem}
+.fakten div{font-size:1rem}
+/* Fuß */
+.fuss{background:#474747;color:#eee}
+.fuss a{color:#eee}
+.fuss-adr{font-size:1rem}
+.fuss h4{font-size:1rem;letter-spacing:.06em}
+.fuss-unten{color:#cfcfcf;border-color:#5a5a5a;font-size:.88rem}
+.leist-k .ic{border-radius:0 !important}
+.toast{font-size:1rem}
+@media (max-width:760px){.kopf-in{height:76px}.nav{top:76px}.korb-btn #korbText{display:none}.korb-btn{padding:10px 12px}.hero-in{padding:70px 20px 60px}}
+.suche input{padding-left:44px !important}
