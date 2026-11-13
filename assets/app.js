@@ -34,7 +34,7 @@
   /* ---------- Grafiken (Platzhalter, wenn kein Foto lädt) ---------- */
   var SVG_LOK =
     '<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elektrolokomotive">' +
-    '<line x1="0" y1="14" x2="640" y2="14" stroke="#8a8378" stroke-width="2"/>' +
+    '<line class="draht" x1="0" y1="14" x2="640" y2="14" stroke="#8a8378" stroke-width="2"/>' +
     '<g stroke="#5f5a52" stroke-width="4" fill="none"><path d="M170 58 L200 18 L230 58"/><path d="M410 58 L440 18 L470 58"/></g>' +
     '<g stroke="#5f5a52" stroke-width="5"><line x1="180" y1="17" x2="220" y2="17"/><line x1="420" y1="17" x2="460" y2="17"/></g>' +
     '<rect x="78" y="56" width="484" height="16" rx="3" fill="#6b6660"/>' +
@@ -53,11 +53,15 @@
     '<rect x="40" y="150" width="560" height="4" fill="#fff" opacity=".85"/>' +
     '<rect x="44" y="182" width="552" height="14" fill="#2a2622"/>' +
     '<g fill="#3a3631"><rect x="110" y="192" width="130" height="22" rx="4"/><rect x="400" y="192" width="130" height="22" rx="4"/></g>' +
-    '<g fill="#1c1a17" stroke="#7a736a" stroke-width="3">' +
-    [140, 210, 430, 500].map(function (x) { return '<circle cx="' + x + '" cy="216" r="17"/>'; }).join("") + "</g>" +
-    '<g fill="#7a736a">' + [140, 210, 430, 500].map(function (x) { return '<circle cx="' + x + '" cy="216" r="4"/>'; }).join("") + "</g>" +
-    '<rect x="0" y="233" width="640" height="5" fill="#cfc8bb"/>' +
-    '<g fill="#6b4a33">' + Array.apply(null, Array(20)).map(function (_, i) { return '<rect x="' + (i * 33 + 4) + '" y="238" width="20" height="8"/>'; }).join("") + "</g>" +
+    [140, 210, 430, 500].map(function (x) {
+      return '<g class="rad"><circle cx="' + x + '" cy="216" r="17" fill="#1c1a17" stroke="#7a736a" stroke-width="3"/>' +
+        '<line x1="' + (x - 13) + '" y1="216" x2="' + (x + 13) + '" y2="216" stroke="#7a736a" stroke-width="2.5"/>' +
+        '<line x1="' + x + '" y1="203" x2="' + x + '" y2="229" stroke="#7a736a" stroke-width="2.5"/>' +
+        '<circle cx="' + x + '" cy="216" r="4" fill="#9a938a"/></g>';
+    }).join("") +
+    '<g class="licht"><circle cx="592" cy="168" r="5" fill="#fff6c8"/><circle cx="48" cy="168" r="5" fill="#ff5a4a"/></g>' +
+    '<g class="gleis"><rect x="0" y="233" width="640" height="5" fill="#cfc8bb"/>' +
+    '<g fill="#6b4a33">' + Array.apply(null, Array(20)).map(function (_, i) { return '<rect x="' + (i * 33 + 4) + '" y="238" width="20" height="8"/>'; }).join("") + "</g></g>" +
     "</svg>";
 
   var SVG_WAGEN =
@@ -201,7 +205,8 @@
       '<h1><span class="etikett">Die Rhätische Bahn in Spur N</span></h1>' +
       '<p><span class="etikett">Eigene Sonderserien der Ge 4/4 II – analog, digital oder mit Sound. Dazu Kupplungen, Weichenlaternen und Ersatzteile für die Gartenbahn.</span></p>' +
       '<div class="knoepfe"><a class="btn" href="#spur-n">Spur N entdecken</a><a class="btn btn-2" href="#spur-g">Zubehör Spur G</a></div>' +
-      "</div><div></div></div></section>" +
+      "</div></div>" +
+      '<div class="hero-strecke" aria-hidden="true"><div class="hero-draht"></div><div class="hero-gleis"></div><div class="hero-zug">' + SVG_LOK + "</div></div></section>" +
       VORTEILE +
       '<section class="band"><div class="wrap">' +
       '<div class="kopfzeile"><div><span class="ueberzeile">Sortiment</span><h2>Zwei Spurweiten, eine Leidenschaft</h2></div></div>' +
@@ -443,13 +448,22 @@
     }).join("") + "</div>";
   }
 
+  function kontaktFoto() {
+    var src = SHOP.kontaktFoto || "";
+    var ersatz = '<div class="foto-ersatz">' + SVG_LOK + "</div>";
+    if (DEMO || !src) return ersatz;
+    if (!/^https?:/.test(src)) src = src; // relativer Pfad, z. B. bilder/laden.jpg
+    return '<img src="' + esc(src) + '" alt="' + esc(SHOP.kontaktFotoText || "MDS-Modell") + '" loading="lazy" onerror="this.outerHTML=this.dataset.e" data-e="' + esc(ersatz) + '">';
+  }
+
   function seiteKontakt() {
     var maps = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SHOP.strasse + ", " + SHOP.ort);
     return '<div class="wrap seite"><span class="ueberzeile">Telefonische Unterstützung und Beratung</span><h1>Kontakt</h1><div class="kontakt">' +
       '<div class="block"><h2>' + esc(SHOP.firma) + "</h2><p>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "</p>" +
       '<p>Telefon: <a href="tel:+4971919127979">' + esc(SHOP.telefon) + "</a><br>Fax: " + esc(SHOP.fax) + '<br>E-Mail: <a href="mailto:' + esc(SHOP.email) + '">' + esc(SHOP.email) + "</a></p>" +
       '<h3 style="margin-top:22px">Öffnungszeiten</h3>' + zeitenHtml() + "</div>" +
-      '<div class="block"><h2>Anfahrt</h2><p>Abholung bestellter Ware und Beratung vor Ort nach vorheriger Absprache.</p>' +
+      '<div class="block"><figure class="kontakt-foto">' + kontaktFoto() + '<figcaption>' + esc(SHOP.kontaktFotoText || "") + "</figcaption></figure>" +
+      '<h2>Anfahrt</h2><p>Abholung bestellter Ware und Beratung vor Ort nach vorheriger Absprache.</p>' +
       '<div class="karte-platz"><div><p>Aus Datenschutzgründen wird keine Karte eingebettet.</p><a class="btn btn-2" href="' + maps + '" target="_blank" rel="noopener">In Google Maps öffnen</a></div></div></div>' +
       "</div></div>";
   }
@@ -741,6 +755,7 @@
     var mb = $(".menu-btn");
     mb.onclick = function () { var o = $("#nav").classList.toggle("offen"); mb.setAttribute("aria-expanded", o); };
     korbZaehler();
+    window.addEventListener("scroll", function () { $(".kopf").classList.toggle("schatten", window.scrollY > 10); }, { passive: true });
     window.addEventListener("hashchange", route);
     route();
   }

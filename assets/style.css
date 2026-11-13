@@ -369,3 +369,44 @@ label{font-size:1rem}
 .toast{font-size:1rem}
 @media (max-width:760px){.kopf-in{height:76px}.nav{top:76px}.korb-btn #korbText{display:none}.korb-btn{padding:10px 12px}.hero-in{padding:70px 20px 60px}}
 .suche input{padding-left:44px !important}
+
+/* ===== Modern: Lok-Einfahrt im Startbild ===== */
+.hero{min-height:640px}
+.hero-in{padding:90px 20px 300px}
+.hero-strecke{position:absolute;left:0;right:0;bottom:0;height:300px;pointer-events:none;--lw:560px;--gleis:26px;z-index:1}
+.hero-gleis{position:absolute;left:0;right:0;bottom:0;height:var(--gleis);
+  background:linear-gradient(#d6d6d6,#9d9d9d) 0 0/100% 5px no-repeat,
+             repeating-linear-gradient(90deg,#4a3526 0 22px,transparent 22px 40px) 0 9px/100% 9px no-repeat,
+             linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)) 0 0/100% 100%;}
+.hero-draht{position:absolute;left:0;right:0;height:2px;background:rgba(220,220,220,.7);bottom:calc(var(--gleis) + var(--lw) * 0.3640625 - 1px)}
+.hero-zug{position:absolute;right:5%;width:var(--lw);bottom:calc(var(--gleis) - var(--lw) * 0.0265625);
+  animation:einfahrt 4.2s cubic-bezier(.15,.6,.25,1) .3s both;filter:drop-shadow(0 10px 12px rgba(0,0,0,.45))}
+.hero-zug svg{display:block;width:100%;height:auto}
+.hero-zug .gleis,.hero-zug .draht{display:none}
+.hero-zug .rad{transform-box:fill-box;transform-origin:center;animation:rollen .45s linear .3s 9}
+.hero-zug .licht circle:first-child{filter:drop-shadow(0 0 6px #fff3a8)}
+@keyframes einfahrt{from{transform:translateX(calc(-100vw - 100%))}to{transform:none}}
+@keyframes rollen{to{transform:rotate(360deg)}}
+.hero-in > div > *{animation:auftauchen .8s ease-out both}
+.hero-in > div > *:nth-child(2){animation-delay:.15s}
+.hero-in > div > *:nth-child(3){animation-delay:.3s}
+.hero-in > div > *:nth-child(4){animation-delay:.45s}
+@keyframes auftauchen{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hero-zug,.hero-zug .rad,.hero-in > div > *{animation:none}}
+@media (max-width:960px){.hero-strecke{--lw:420px;height:240px}.hero-in{padding-bottom:240px}}
+@media (max-width:560px){.hero-strecke{--lw:300px;height:180px}.hero-in{padding-bottom:180px}.hero{min-height:0}}
+/* Modern: weiche Übergänge */
+.kopf{transition:box-shadow .2s}
+.kopf.schatten{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.karte{transition:box-shadow .2s,transform .2s}
+.karte:hover{transform:translateY(-3px)}
+.karte .bild img{transition:transform .3s}
+.karte:hover .bild img{transform:scale(1.04)}
+.spur{transition:box-shadow .2s,transform .2s}
+.spur:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+/* Kontaktfoto */
+.kontakt-foto{margin:0 0 22px}
+.kontakt-foto img,.kontakt-foto .foto-ersatz{width:100%;aspect-ratio:16/9;object-fit:cover;background:#f2f2f2;display:block}
+.kontakt-foto .foto-ersatz{display:grid;place-items:center;padding:30px}
+.kontakt-foto .foto-ersatz svg{width:80%}
+.kontakt-foto figcaption{font-size:.9rem;color:var(--grau);margin-top:8px}

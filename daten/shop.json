@@ -42,5 +42,8 @@
   "Schweiz": null,
   "Anderes Land": null
  },
- "lieferzeit": "Lagerartikel ca. 8 Tage nach Zahlungseingang"
+ "lieferzeit": "Lagerartikel ca. 8 Tage nach Zahlungseingang",
+ "kontaktFoto": "https://www.mds-modell.eu/assets/images/8/id-60009_neu-603910ec.jpg",
+ "kontaktFotoText": "Unsere RhB Ge 4/4 II 617 „Ilanz“ in Spur N",
+ "_kontaktFoto_hinweis": "Foto auf der Kontaktseite. Am besten ein eigenes Foto (Laden, Werkstatt, Anlage) als bilder/kontakt.jpg hochladen und hier 'bilder/kontakt.jpg' eintragen."
 }
