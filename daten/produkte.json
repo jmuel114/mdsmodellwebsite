@@ -1,0 +1,643 @@
+{
+ "kategorien": [
+  {
+   "id": "n-loks",
+   "spur": "N",
+   "name": "Lokomotiven",
+   "text": "RhB Ge 4/4 II in Baugröße N – wahlweise analog, digital oder digital mit Sound."
+  },
+  {
+   "id": "n-wagen",
+   "spur": "N",
+   "name": "Güterwagen",
+   "text": "Güterwagen in Baugröße N."
+  },
+  {
+   "id": "g-kupplung",
+   "spur": "G",
+   "name": "Kupplungen · S-KuPLiX",
+   "text": "Die smarte Kupplung für Gartenbahnen – jetzt auch mit servogesteuerter Entkupplung."
+  },
+  {
+   "id": "g-laternen",
+   "spur": "G",
+   "name": "Weichenlaternen",
+   "text": "Weichenlaternen für LGB- und Massoth-Antriebe."
+  },
+  {
+   "id": "g-ersatz",
+   "spur": "G",
+   "name": "Ersatzteile & Werkzeug",
+   "text": "Zahnradsätze und Werkzeug für die Gartenbahn."
+  },
+  {
+   "id": "archiv",
+   "spur": "",
+   "name": "Archiv",
+   "text": "Frühere Sonderserien – ausverkauft, zur Information."
+  }
+ ],
+ "produkte": [
+  {
+   "id": "mds-60000",
+   "name": "RhB-Elok Ge 4/4 II 628 „S-chanf“",
+   "kat": "n-loks",
+   "preis": 184.5,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/1/mm-mds60000-002-699aaec4.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60001",
+   "name": "N-RhB-Elok Ge 4/4 II 612 „Thusis“",
+   "kat": "n-loks",
+   "preis": 184.0,
+   "ab": true,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/1/mm-mds60001-002-08255d5c.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60005",
+   "name": "N-RhB-Elok Ge 4/4 II 616 „Filisur“ – Spendenlok Rhaetia",
+   "kat": "n-loks",
+   "preis": 192.5,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/b/mm-mds-60005-001-08fa09ab-d6b98e9b.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60009",
+   "name": "N-RhB-Elok Ge 4/4 II 617 „Ilanz“ – RE-Power Sommer",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/8/id-60009_neu-603910ec.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60011",
+   "name": "N-RhB-Elok Ge 4/4 II 620 „Zernez“ – RhB-Club",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/3/id-60011-rhb-club-bd79db7a.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60012",
+   "name": "N-RhB-Elok Ge 4/4 II 622 „Arosa“ – Hakone Tozan Railway",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/d/id-60012-hakone-b253d22c.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60013",
+   "name": "N-RhB-Elok Ge 4/4 II 612 „Thusis“ – Burkhalter",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": true,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/1/mm-mds-60013-001-d986c916.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60014",
+   "name": "N-RhB-Elok Ge 4/4 II 618 „Bergün“ – Edelweiss",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": true,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/1/mm-mds-60014-001-3e06e136.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60015",
+   "name": "N-RhB-Elok Ge 4/4 II 619 „Samedan“ – Südostschweiz",
+   "kat": "n-loks",
+   "preis": 190.0,
+   "ab": true,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/0/mm-mds-60015-001-ad5f4fab.jpg",
+   "archiv": false
+  },
+  {
+   "id": "avm-1614-100",
+   "name": "N-SBB-Getreidewagen „Ähre“",
+   "kat": "n-wagen",
+   "preis": 81.9,
+   "ab": false,
+   "info": "bordeaux, mit und ohne Ähre",
+   "varianten": [],
+   "bild": "assets/images/b/avm-1614-100-3c2a25c5.jpg",
+   "archiv": false
+  },
+  {
+   "id": "avm-1617-100",
+   "name": "N-SBB-Getreidewagen grau",
+   "kat": "n-wagen",
+   "preis": 81.9,
+   "ab": false,
+   "info": "grau",
+   "varianten": [],
+   "bild": "assets/images/7/avm-1617-100-6482e0d4.jpg",
+   "archiv": false
+  },
+  {
+   "id": "avm-1618-100",
+   "name": "N-SBB-Getreidewagen braun",
+   "kat": "n-wagen",
+   "preis": 81.9,
+   "ab": false,
+   "info": "braun",
+   "varianten": [],
+   "bild": "assets/images/a/avm-1618-100-5b068377.jpg",
+   "archiv": false
+  },
+  {
+   "id": "avm-1655-100",
+   "name": "N-SBB-Getreidewagen „Zucker“",
+   "kat": "n-wagen",
+   "preis": 81.9,
+   "ab": false,
+   "info": "blau, Aufschrift „Zucker“",
+   "varianten": [],
+   "bild": "assets/images/b/avm-1655-100-f923b42d.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-21001",
+   "name": "S-KuPLiX – die smarte Kupplung, schwarz",
+   "kat": "g-kupplung",
+   "preis": 15.5,
+   "ab": false,
+   "info": "schwarz, 10 Stück",
+   "varianten": [],
+   "bild": "assets/images/a/id-21001-1-b05c9264.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-21004",
+   "name": "S-KuPLiX – die smarte Kupplung, grau",
+   "kat": "g-kupplung",
+   "preis": 15.5,
+   "ab": false,
+   "info": "grau, 10 Stück",
+   "varianten": [],
+   "bild": "assets/images/c/id-21004-1-8e06c350.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-21005",
+   "name": "S-EntKuPLiX mit Entkuppler kpl.",
+   "kat": "g-kupplung",
+   "preis": 17.0,
+   "ab": false,
+   "info": "schwarz, 1 Stück",
+   "varianten": [],
+   "bild": "assets/images/2/id-21005-1-49ef78b3.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-21006",
+   "name": "S-EntKuPLiX mit Entkuppler kpl. + Servo",
+   "kat": "g-kupplung",
+   "preis": 28.0,
+   "ab": false,
+   "info": "schwarz, 1 Stück, servogesteuert",
+   "varianten": [],
+   "bild": "assets/images/a/id-21006-1-52215a84.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-21007",
+   "name": "S-EntKuPLiX mit Entkuppler kpl. + Servo, 2 Stück",
+   "kat": "g-kupplung",
+   "preis": 50.0,
+   "ab": false,
+   "info": "schwarz, 2 Stück, servogesteuert",
+   "varianten": [],
+   "bild": "assets/images/d/id-21007-1-56da5ec9.jpg",
+   "archiv": false
+  },
+  {
+   "id": "kupplungsset-kiss",
+   "name": "Kupplungsset mit Deichsel für LGB/Kiss-Panoramawagen",
+   "kat": "g-kupplung",
+   "preis": 20.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/a/lgb-pano-nach-umbau-c7e84049-c3143cc6.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10301",
+   "name": "RhB-Weichenlaterne zum Austausch für LGB-Laterne 12040",
+   "kat": "g-laternen",
+   "preis": 24.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/1/id-10301-f83c6be1-674be10a.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-10302",
+   "name": "RhB-Weichenlaterne passend für LGB-Weichenantrieb 12010",
+   "kat": "g-laternen",
+   "preis": 27.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/6/id-10302-164e699b-f57827a5.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10306",
+   "name": "DB/ÖBB-Weichenlaterne Pfeil „links“ mit Kamin, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.9,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/1/id-10306-links-7fce0f96.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10307",
+   "name": "DB/ÖBB-Weichenlaterne Pfeil „rechts“ mit Kamin, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.9,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/a/id-10307-rechts-64769e81.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10308",
+   "name": "DB/ÖBB-Weichenlaterne Pfeil „links“, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/f/id-10308-links-c2703fa4.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10309",
+   "name": "DB/ÖBB-Weichenlaterne Pfeil „rechts“, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/5/id-10309-rechts-c0f8910c.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10310",
+   "name": "DB-Weichenlaterne „links“, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/2/id-10310-links-41c968cd.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-10311",
+   "name": "DB-Weichenlaterne „rechts“, für LGB-/Massoth-Antrieb",
+   "kat": "g-laternen",
+   "preis": 27.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/5/id-10311-rechts-a03c311d.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-90001",
+   "name": "Zahnradsatz für LGB Ge 2/4",
+   "kat": "g-ersatz",
+   "preis": 22.5,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/f/id-90001-zahradsatz-ge2-4-1faa9eda.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-90002",
+   "name": "Zahnradsatz für LGB Ge 4/4 II + III",
+   "kat": "g-ersatz",
+   "preis": 40.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/1/id-90002-c9fec012.jpg",
+   "archiv": false
+  },
+  {
+   "id": "id-90011",
+   "name": "Abziehvorrichtung",
+   "kat": "g-ersatz",
+   "preis": 89.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/5/id-90011-abziehvorrichtung-e5808bd0.jpg",
+   "archiv": false
+  },
+  {
+   "id": "mds-60002",
+   "name": "N-RhB-Elok Ge 4/4 II 619 „Samedan“ – 100 Jahre Bernina",
+   "kat": "archiv",
+   "preis": 160.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog"
+   ],
+   "bild": "assets/images/c/mm-mds60002-002-c10f1318.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60003",
+   "name": "N-RhB-Elok Ge 4/4 II 630 „Trun“ – 100 Jahre Chur–Disentis",
+   "kat": "archiv",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/6/mm-mds60003-002-cb5d3863.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60004",
+   "name": "N-RhB-Elok Ge 4/4 II 620 „Zernez“ – 100 Jahre Bever–Scuol",
+   "kat": "archiv",
+   "preis": 164.5,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/9/mm-mds60004-002-065f6c53.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60006",
+   "name": "N-RhB-Elok Ge 4/4 II 617 „Ilanz“ – 50 Jahre LGB",
+   "kat": "archiv",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/a/id-60006_neu-f9096672.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60007",
+   "name": "N-RhB-Elok Ge 4/4 II 623 „Bonaduz“ – Glacier Express",
+   "kat": "archiv",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/0/id-60007-glacier-express-6fe0c208.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60008",
+   "name": "N-RhB-Elok Ge 4/4 II 615 „Klosters“ – RE-Power Winter",
+   "kat": "archiv",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/e/id-60008_neu-cf10d74a.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-60010",
+   "name": "N-RhB-Elok Ge 4/4 II 621 „Traveco“",
+   "kat": "archiv",
+   "preis": 190.0,
+   "ab": false,
+   "info": "",
+   "varianten": [
+    "analog",
+    "digital",
+    "digital+Sound"
+   ],
+   "bild": "assets/images/0/id-60010-traveco-a9fa0eb9.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61003",
+   "name": "N-RhB-Schiebewandwagen Haik-v 5134",
+   "kat": "archiv",
+   "preis": 31.0,
+   "ab": false,
+   "info": "Hersteller: HG Commerciale",
+   "varianten": [],
+   "bild": "assets/images/b/mmmds61003-002-5ae8f4ca.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61005",
+   "name": "N-RhB-Schiebewandwagen 2er-Set „Valser“",
+   "kat": "archiv",
+   "preis": 58.7,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/6/id-61005-valserset-86def295.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61006",
+   "name": "N-RhB-Schiebewandwagen Haik 5167 „Feldschlösschen“",
+   "kat": "archiv",
+   "preis": 31.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/a/id-61006-feldschloesschen-8338b6a7.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61007",
+   "name": "N-RhB-Schiebewandwagen Haik 5171 „Transportbahn“",
+   "kat": "archiv",
+   "preis": 31.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/f/id-61007-transportbahn-5b5ccd76.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61008",
+   "name": "N-RhB-Schiebewandwagen Haik 5173 „Primo“",
+   "kat": "archiv",
+   "preis": 31.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/b/id-61008-primo-6b3e4355.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61009",
+   "name": "N-RhB-Schiebewandwagen 2er-Set „Volg“",
+   "kat": "archiv",
+   "preis": 58.7,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/8/mm-mds-61010-002-bf915789.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61010",
+   "name": "N-RhB-Schiebewandwagen Haiqq-tuyz 5174 „Volg-Fläsch“",
+   "kat": "archiv",
+   "preis": 36.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/8/id-61010-volg-flaesch-39079288.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61011",
+   "name": "N-RhB-Schiebewandwagen 2er-Set „Calanda“",
+   "kat": "archiv",
+   "preis": 69.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/e/mm-mds-61011-1_2-003-e451febf.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61012",
+   "name": "N-RhB-Schiebewandwagen Haik-v 5128 „Möbel Pfister“",
+   "kat": "archiv",
+   "preis": 36.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/2/mm-mds-61012-002-6e118b53.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61013",
+   "name": "N-RhB-Schiebewandwagen 2er-Set „Kuoni“",
+   "kat": "archiv",
+   "preis": 69.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/e/mm-mds-61013-1_2-003-f2927c1f.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61014",
+   "name": "N-RhB-Schiebewandwagen Haikqq-y 5166 „Curea Elektro AG“",
+   "kat": "archiv",
+   "preis": 36.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/d/mm-mds-61014-002-5bda6e0a.jpg",
+   "archiv": true
+  },
+  {
+   "id": "mds-61015",
+   "name": "N-RhB-Schiebewandwagen Haik-qy 5168 „Rhäzünser/Passugger“",
+   "kat": "archiv",
+   "preis": 36.0,
+   "ab": false,
+   "info": "",
+   "varianten": [],
+   "bild": "assets/images/9/mm-mds-61015-002-57d033ef.jpg",
+   "archiv": true
+  }
+ ]
+}

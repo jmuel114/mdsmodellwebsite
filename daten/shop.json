@@ -1,0 +1,46 @@
+{
+ "_hinweis": "Zentrale Einstellungen. Wird von der Website (app.js) UND vom Bestellskript (bestellung.php) gelesen.",
+ "firma": "MDS-Modell",
+ "inhaber": "Gunnar Müller",
+ "strasse": "Häfnersweg 8",
+ "ort": "71549 Auenwald",
+ "telefon": "07191 9127979",
+ "fax": "07191 9127980",
+ "email": "office@mds-modell.eu",
+ "bestell_email": "office@mds-modell.eu",
+ "absender_email": "shop@mds-modell.eu",
+ "versandModus": "formsubmit",
+ "_versandModus_hinweis": "'formsubmit' = GitHub Pages / statisches Hosting (Mails über formsubmit.co). 'php' = eigener Webspace mit bestellung.php.",
+ "formsubmit_ziel": "",
+ "_formsubmit_ziel_hinweis": "Leer = bestell_email. Nach der Aktivierung kann hier der zufällige FormSubmit-Alias eingetragen werden, damit die Adresse nicht im Quelltext steht.",
+ "oeffnungszeiten": [
+  [
+   "Montag – Freitag",
+   "17:00 – 19:00 Uhr"
+  ],
+  [
+   "Samstag",
+   "10:00 – 17:00 Uhr"
+  ],
+  [
+   "Sonn- und Feiertage",
+   "geschlossen"
+  ]
+ ],
+ "bildBasis": "https://www.mds-modell.eu/",
+ "mindestbestellwert": 10.0,
+ "aufpreis": {
+  "_hinweis": "Aufpreis gegenüber 'analog' in Euro. null = 'Aufpreis auf Anfrage' (Preis wird in der Vorausrechnung bestätigt).",
+  "analog": 0,
+  "digital": null,
+  "digital+Sound": null
+ },
+ "versand": {
+  "_hinweis": "Versandkosten in Euro je Land. null = wird gesondert mit der Vorausrechnung mitgeteilt.",
+  "Deutschland": null,
+  "Österreich": null,
+  "Schweiz": null,
+  "Anderes Land": null
+ },
+ "lieferzeit": "Lagerartikel ca. 8 Tage nach Zahlungseingang"
+}
