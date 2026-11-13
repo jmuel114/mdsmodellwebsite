@@ -1,4 +1,4 @@
-/* MDS-Modell – Shop-Logik (ohne Online-Zahlung; Bestellung wird per E-Mail an den Händler gesendet) */
+/* MDS-Modell – Shop-Logik (Bestellung wird per E-Mail an den Händler gesendet) */
 (function () {
   "use strict";
 
@@ -190,7 +190,7 @@
   var VORTEILE =
     '<div class="vorteile wrap" style="padding:0;max-width:none">' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg><span><b>Eigene Sonderserien</b>RhB-Modelle aus Auenwald</span></div>' +
-    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3v4M17 3v4M4 9h16M5 5h14v15H5z"/></svg><span><b>Ohne Online-Zahlung</b>Sie bestellen, wir senden die Rechnung</span></div>' +
+    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16v8H4zM8 8V5M12 8V5M16 8V5M8 16v3M12 16v3M16 16v3"/></svg><span><b>Werkstatt-Service</b>Digitalumbau &amp; Decoder</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span><b>Versand mit DHL</b>Oder Abholung in Auenwald</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><b>Persönliche Beratung</b>' + "07191 9127979" + "</span></div>" +
     "</div>";
@@ -358,7 +358,7 @@
       '<p class="klein">Alle Preise inkl. gesetzl. MwSt.' + (r.offen ? "<br>* zzgl. Aufpreis für Digital-/Sound-Ausführung – wird mit der Vorausrechnung bestätigt." : "") + "</p>" +
       (unterMin ? '<div class="hinweisbox">Mindestbestellwert: ' + euro(min) + "</div>" : "") +
       (mitKnopf ? '<a class="btn btn-gross" href="#kasse"' + (unterMin ? ' aria-disabled="true" style="pointer-events:none;opacity:.45"' : "") + ">Zur Kasse</a>" +
-        '<p class="klein" style="text-align:center;margin-top:12px">Keine Online-Zahlung nötig – Sie erhalten eine Rechnung per E-Mail.</p>' : "") +
+        "" : "") +
       "</aside>";
   }
   function versandText(land) {
@@ -460,6 +460,9 @@
     var maps = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SHOP.strasse + ", " + SHOP.ort);
     return '<div class="wrap seite"><span class="ueberzeile">Telefonische Unterstützung und Beratung</span><h1>Kontakt</h1><div class="kontakt">' +
       '<div class="block"><h2>' + esc(SHOP.firma) + "</h2><p>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "</p>" +
+      '<div class="ansprech"><div class="ansprech-bild" aria-hidden="true">' + esc((SHOP.ansprechpartner || SHOP.inhaber).split(" ").map(function (w) { return w.charAt(0); }).join("")) + '</div>' +
+      '<div><span class="ueberzeile" style="margin:0">Ihr Ansprechpartner</span><b>' + esc(SHOP.ansprechpartner || SHOP.inhaber) + "</b>" +
+      "<span>" + esc(SHOP.ansprechpartnerRolle || "Inhaber") + "</span></div></div>" +
       '<p>Telefon: <a href="tel:+4971919127979">' + esc(SHOP.telefon) + "</a><br>Fax: " + esc(SHOP.fax) + '<br>E-Mail: <a href="mailto:' + esc(SHOP.email) + '">' + esc(SHOP.email) + "</a></p>" +
       '<h3 style="margin-top:22px">Öffnungszeiten</h3>' + zeitenHtml() + "</div>" +
       '<div class="block"><figure class="kontakt-foto">' + kontaktFoto() + '<figcaption>' + esc(SHOP.kontaktFotoText || "") + "</figcaption></figure>" +
@@ -490,15 +493,55 @@
         '<p class="platzhalter">Empfehlung: konkrete Versandkosten je Land in <code>daten/shop.json</code> eintragen – dann werden sie automatisch im Warenkorb angezeigt.</p>' +
         "<h2>Lieferzeit</h2><p>Lagerartikel ca. 8 Tage. Ist ein Artikel nicht vorrätig oder beim Hersteller nicht lieferbar, informieren wir Sie über die voraussichtliche Wartezeit.</p>" +
         "<h2>Mindestbestellwert</h2><p>" + euro(SHOP.mindestbestellwert || 0) + "</p>"],
-      widerrufsformular: ["Muster-Widerrufsformular",
-        "<p>(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>" +
-        "<p>An: " + esc(SHOP.firma) + ", " + esc(SHOP.strasse) + ", " + esc(SHOP.ort) + ", Fax: " + esc(SHOP.fax) + ", E-Mail: " + esc(SHOP.email) + "</p>" +
-        "<p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*)</p>" +
-        "<p>_______________________________________________</p><p>Bestellt am (*)/erhalten am (*): ____________________</p><p>Name des/der Verbraucher(s): ____________________</p>" +
-        "<p>Anschrift des/der Verbraucher(s): ____________________</p><p>Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier): ____________________</p><p>Datum: ____________________</p><p>(*) Unzutreffendes streichen.</p>"]
     };
     var t = T[id];
     return '<div class="wrap seite"><div class="text"><h1>' + t[0] + "</h1>" + t[1] + "</div></div>";
+  }
+
+  function seiteWiderrufsformular() {
+    function f(name, label, typ, pflicht, extra) {
+      return '<div class="feld" data-f="' + name + '"><label for="w-' + name + '">' + label + (pflicht ? " *" : "") + "</label>" +
+        '<input id="w-' + name + '" name="' + name + '" type="' + (typ || "text") + '"' + (pflicht ? " required" : "") + " " + (extra || "") + ">" +
+        '<div class="fehltext">Bitte ausfüllen.</div></div>';
+    }
+    return '<div class="wrap seite"><h1>Widerrufsformular</h1>' +
+      '<p style="max-width:46em">Sie möchten einen Kauf widerrufen? Füllen Sie einfach dieses Formular aus. Sie erhalten sofort eine Eingangsbestätigung per E-Mail. ' +
+      'Alternativ können Sie uns den Widerruf auch per Post, Fax oder E-Mail mitteilen – Details in der <a href="#widerruf">Widerrufsbelehrung</a>.</p>' +
+      '<div class="kasse"><form class="block" id="widerrufForm" novalidate>' +
+      '<h2>Hiermit widerrufe ich den Vertrag über den Kauf folgender Waren</h2>' +
+      '<div class="feld" data-f="waren"><label for="w-waren">Artikel (Bezeichnung und/oder Art.-Nr.) *</label><textarea id="w-waren" name="waren" required placeholder="z. B. MDS-60009 Ge 4/4 II 617 „Ilanz“, digital"></textarea><div class="fehltext">Bitte angeben.</div></div>' +
+      '<div class="zwei">' + f("bestellnr", "Bestell- oder Rechnungsnummer", "text", false) + f("bestellt", "Bestellt am / erhalten am", "text", true, 'placeholder="z. B. 02.11.2026 / 09.11.2026"') + "</div>" +
+      '<h2 style="margin-top:10px">Ihre Angaben</h2>' +
+      f("name", "Vor- und Nachname", "text", true, 'autocomplete="name"') +
+      f("anschrift", "Anschrift (Straße, PLZ, Ort)", "text", true, 'autocomplete="street-address"') +
+      '<div class="zwei">' + f("email", "E-Mail (für die Bestätigung)", "email", true, 'autocomplete="email"') + f("telefon", "Telefon (optional)", "tel", false, 'autocomplete="tel"') + "</div>" +
+      '<div class="feld"><label for="w-bemerkung">Bemerkung (optional)</label><textarea id="w-bemerkung" name="bemerkung" placeholder="Eine Begründung ist nicht erforderlich."></textarea></div>' +
+      '<input class="hp" type="text" name="webseite" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="btn btn-gross" type="submit">Widerruf jetzt absenden</button><div id="widerrufMeldung" style="margin-top:14px"></div></form>' +
+      '<aside class="summe"><h3>Rücksendung</h3><p>Bitte senden Sie die Ware an:</p><p><b>' + esc(SHOP.firma) + "</b><br>" + esc(SHOP.strasse) + "<br>" + esc(SHOP.ort) + "</p>" +
+      '<p>Fragen? Rufen Sie uns an:<br><b style="font-size:1.25rem">' + esc(SHOP.telefon) + "</b></p></aside></div></div>";
+  }
+
+  function widerrufAktionen() {
+    var form = $("#widerrufForm");
+    form.onsubmit = function (e) {
+      e.preventDefault();
+      if (!pruefen(form, ["waren", "bestellt", "name", "anschrift", "email"])) return;
+      var btn = form.querySelector('button[type="submit"]'), m = $("#widerrufMeldung");
+      btn.disabled = true; btn.textContent = "Wird gesendet …";
+      var d = { typ: "widerruf", webseite: form.elements.webseite.value };
+      ["waren", "bestellnr", "bestellt", "name", "anschrift", "email", "telefon", "bemerkung"].forEach(function (n) { d[n] = form.elements[n].value.trim(); });
+      senden(d).then(function (res) {
+        if (!res || !res.ok) throw new Error((res && res.fehler) || "Unbekannter Fehler");
+        var zeit = new Date().toLocaleString("de-DE");
+        form.innerHTML = '<div class="hinweisbox gelb"><b>Ihr Widerruf ist eingegangen</b> (' + esc(zeit) + " Uhr)." +
+          (res.demo ? " Vorschau – es wurde keine E-Mail verschickt." : " Eine Bestätigung wurde an " + esc(d.email) + " gesendet.") +
+          "<br>Bitte senden Sie die Ware an die rechts genannte Adresse zurück.</div>";
+      }).catch(function (err) {
+        btn.disabled = false; btn.textContent = "Widerruf jetzt absenden";
+        m.innerHTML = '<div class="hinweisbox">Senden fehlgeschlagen: ' + esc(err.message) + "<br>Bitte senden Sie den Widerruf per E-Mail an " + esc(SHOP.email) + ".</div>";
+      });
+    };
   }
 
   function seite404() {
@@ -527,7 +570,8 @@
     else if (h === "danke") html = seiteDanke();
     else if (h === "leistungen") { html = seiteLeistungen(); navKey = "leistungen"; }
     else if (h === "kontakt") { html = seiteKontakt(); navKey = "kontakt"; }
-    else if (["impressum", "datenschutz", "agb", "widerruf", "versand", "widerrufsformular"].indexOf(h) >= 0) { html = seiteText(h); navKey = h; }
+    else if (h === "widerrufsformular") { html = seiteWiderrufsformular(); navKey = h; }
+    else if (["impressum", "datenschutz", "agb", "widerruf", "versand"].indexOf(h) >= 0) { html = seiteText(h); navKey = h; }
     else if (h === "inhalt") return;
     else html = seite404();
     if (html === "") return;
@@ -557,6 +601,7 @@
     if (h === "warenkorb") korbAktionen();
     if (h === "kasse") kasseAktionen();
     if (h === "leistungen") anfrageAktionen();
+    if (h === "widerrufsformular") widerrufAktionen();
   }
 
   function mengeKnoepfe(root, onChange) {
@@ -640,7 +685,17 @@
   }
   function sendenFormSubmit(daten) {
     var felder, nr = "";
-    if (daten.typ === "anfrage") {
+    if (daten.typ === "widerruf") {
+      felder = {
+        _subject: "WIDERRUF – " + daten.name + (daten.bestellnr ? " – " + daten.bestellnr : ""),
+        Art: "Widerruf eines Kaufvertrags (Online-Widerrufsformular)",
+        Eingang: new Date().toLocaleString("de-DE"),
+        Waren: daten.waren, Bestellnummer: daten.bestellnr || "–", "Bestellt / erhalten am": daten.bestellt,
+        Name: daten.name, Anschrift: daten.anschrift, email: daten.email, Telefon: daten.telefon || "–", Bemerkung: daten.bemerkung || "–",
+        _autoresponse: "Guten Tag " + daten.name + ",\n\nwir bestätigen den Eingang Ihres Widerrufs vom " + new Date().toLocaleString("de-DE") + " Uhr.\n\nWiderrufene Waren:\n" + daten.waren +
+          "\n\nBitte senden Sie die Ware an: " + SHOP.firma + ", " + SHOP.strasse + ", " + SHOP.ort + ".\n\nMit freundlichen Grüßen\n" + SHOP.firma + " · Tel. " + SHOP.telefon
+      };
+    } else if (daten.typ === "anfrage") {
       felder = {
         _subject: "Anfrage: " + daten.leistung + " – " + daten.name,
         Leistung: daten.leistung, Name: daten.name, email: daten.email, Telefon: daten.telefon || "–", Nachricht: daten.nachricht

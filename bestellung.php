@@ -111,6 +111,31 @@ if ($typ === 'anfrage') {
     antwort(['ok' => true]);
 }
 
+/* =================== Widerruf =================== */
+if ($typ === 'widerruf') {
+    $f = [];
+    foreach (['bestellnr', 'bestellt', 'name', 'anschrift', 'email', 'telefon'] as $n) $f[$n] = einzeilig($in[$n] ?? '', 200);
+    $f['waren'] = sauber($in['waren'] ?? '', 3000);
+    $f['bemerkung'] = sauber($in['bemerkung'] ?? '', 3000);
+    if ($f['waren'] === '' || $f['name'] === '' || $f['anschrift'] === '' || $f['bestellt'] === '' || !filter_var($f['email'], FILTER_VALIDATE_EMAIL)) {
+        fehler('Bitte alle Pflichtfelder ausfüllen.');
+    }
+    $zeit = date('d.m.Y, H:i') . ' Uhr';
+    $text = "WIDERRUF über das Online-Formular\n" . str_repeat('=', 44) . "\nEingang: $zeit\n\n"
+        . "Waren:\n{$f['waren']}\n\nBestell-/Rechnungsnr.: {$f['bestellnr']}\nBestellt/erhalten am: {$f['bestellt']}\n\n"
+        . "Name:      {$f['name']}\nAnschrift: {$f['anschrift']}\nE-Mail:    {$f['email']}\nTelefon:   {$f['telefon']}\n\n"
+        . ($f['bemerkung'] !== '' ? "Bemerkung:\n{$f['bemerkung']}\n" : '');
+    @file_put_contents($ablage . '/widerruf-' . date('Ymd-His') . '-' . random_int(100, 999) . '.json', json_encode($f + ['eingang' => date('c')], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    if (!mailSenden($haendler, "WIDERRUF – {$f['name']}" . ($f['bestellnr'] ? " – {$f['bestellnr']}" : ''), $text, $absender, "$firma Website", $f['email'])) {
+        fehler('E-Mail konnte nicht versendet werden.', 500);
+    }
+    mailSenden($f['email'], "Eingangsbestätigung Ihres Widerrufs – $firma",
+        "Guten Tag {$f['name']},\n\nwir bestätigen den Eingang Ihres Widerrufs am $zeit.\n\nWiderrufene Waren:\n{$f['waren']}\n\n"
+        . "Bitte senden Sie die Ware an: $firma, {$shop['strasse']}, {$shop['ort']}.\n\nMit freundlichen Grüßen\n$firma · Tel. {$shop['telefon']}\n",
+        $absender, $firma, $shop['email']);
+    antwort(['ok' => true]);
+}
+
 /* =================== Bestellung =================== */
 if ($typ !== 'bestellung') fehler('Unbekannter Typ.');
 
