@@ -32,37 +32,75 @@
   }
 
   /* ---------- Grafiken (Platzhalter, wenn kein Foto lädt) ---------- */
-  var SVG_LOK =
-    '<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elektrolokomotive">' +
-    '<line class="draht" x1="0" y1="14" x2="640" y2="14" stroke="#8a8378" stroke-width="2"/>' +
-    '<g stroke="#5f5a52" stroke-width="4" fill="none"><path d="M170 58 L200 18 L230 58"/><path d="M410 58 L440 18 L470 58"/></g>' +
-    '<g stroke="#5f5a52" stroke-width="5"><line x1="180" y1="17" x2="220" y2="17"/><line x1="420" y1="17" x2="460" y2="17"/></g>' +
-    '<rect x="78" y="56" width="484" height="16" rx="3" fill="#6b6660"/>' +
-    '<path d="M40 182 L40 104 Q42 74 74 72 L566 72 Q598 74 600 104 L600 182 Z" fill="#b0141e"/>' +
-    '<path d="M40 104 Q42 74 74 72 L104 72 L104 182 L40 182 Z" fill="#9c1019"/>' +
-    '<path d="M536 72 L566 72 Q598 74 600 104 L600 182 L536 182 Z" fill="#9c1019"/>' +
-    '<rect x="50" y="88" width="44" height="34" rx="4" fill="#26292e"/><rect x="546" y="88" width="44" height="34" rx="4" fill="#26292e"/>' +
-    '<rect x="116" y="88" width="22" height="34" rx="2" fill="#26292e"/><rect x="502" y="88" width="22" height="34" rx="2" fill="#26292e"/>' +
-    '<g fill="#86101a">' +
-    [160, 214, 268, 322, 376, 430].map(function (x) { return '<rect x="' + x + '" y="88" width="42" height="40" rx="2"/>'; }).join("") +
-    "</g>" +
-    '<g stroke="#b0141e" stroke-width="2">' +
-    [160, 214, 268, 322, 376, 430].map(function (x) {
-      var o = ""; for (var y = 94; y < 128; y += 6) o += '<line x1="' + x + '" y1="' + y + '" x2="' + (x + 42) + '" y2="' + y + '"/>'; return o;
-    }).join("") + "</g>" +
-    '<rect x="40" y="150" width="560" height="4" fill="#fff" opacity=".85"/>' +
-    '<rect x="44" y="182" width="552" height="14" fill="#2a2622"/>' +
-    '<g fill="#3a3631"><rect x="110" y="192" width="130" height="22" rx="4"/><rect x="400" y="192" width="130" height="22" rx="4"/></g>' +
-    [140, 210, 430, 500].map(function (x) {
-      return '<g class="rad"><circle cx="' + x + '" cy="216" r="17" fill="#1c1a17" stroke="#7a736a" stroke-width="3"/>' +
-        '<line x1="' + (x - 13) + '" y1="216" x2="' + (x + 13) + '" y2="216" stroke="#7a736a" stroke-width="2.5"/>' +
-        '<line x1="' + x + '" y1="203" x2="' + x + '" y2="229" stroke="#7a736a" stroke-width="2.5"/>' +
-        '<circle cx="' + x + '" cy="216" r="4" fill="#9a938a"/></g>';
-    }).join("") +
-    '<g class="licht"><circle cx="592" cy="168" r="5" fill="#fff6c8"/><circle cx="48" cy="168" r="5" fill="#ff5a4a"/></g>' +
-    '<g class="gleis"><rect x="0" y="233" width="640" height="5" fill="#cfc8bb"/>' +
-    '<g fill="#6b4a33">' + Array.apply(null, Array(20)).map(function (_, i) { return '<rect x="' + (i * 33 + 4) + '" y="238" width="20" height="8"/>'; }).join("") + "</g></g>" +
-    "</svg>";
+  var SVG_LOK = (function () {
+    var D = '<defs>' +
+      '<linearGradient id="lkK" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d0151f"/><stop offset=".55" stop-color="#b3101a"/><stop offset="1" stop-color="#930b13"/></linearGradient>' +
+      '<linearGradient id="lkD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a9a9a"/><stop offset="1" stop-color="#6a6a6a"/></linearGradient>' +
+      '<linearGradient id="lkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4c5a68"/><stop offset=".5" stop-color="#26303a"/><stop offset="1" stop-color="#1a2028"/></linearGradient>' +
+      '<linearGradient id="lkF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#454545"/><stop offset="1" stop-color="#232323"/></linearGradient>' +
+      '<radialGradient id="lkL"><stop offset="0" stop-color="#fffbe0"/><stop offset=".5" stop-color="#ffe98a" stop-opacity=".9"/><stop offset="1" stop-color="#ffe98a" stop-opacity="0"/></radialGradient>' +
+      "</defs>";
+    function stromabnehmer(x, s) { // Einholm-Stromabnehmer, s = 1 oder -1 (Richtung)
+      return '<g stroke="#4a4a4a" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M' + x + ' 56 L' + (x + 30 * s) + ' 36 L' + (x + 4 * s) + ' 19"/>' +
+        '<path d="M' + (x + 8 * s) + ' 56 L' + (x + 30 * s) + ' 40" stroke-width="2"/></g>' +
+        '<rect x="' + (x + 4 * s - 22) + '" y="15" width="44" height="4" rx="2" fill="#3a3a3a"/>' +
+        '<rect x="' + (x - 10) + '" y="55" width="20" height="5" rx="1.5" fill="#5a5a5a"/>';
+    }
+    function lueftung(x) {
+      var o = '<rect x="' + x + '" y="90" width="44" height="40" rx="2" fill="#8a0b12"/>';
+      for (var y = 94; y < 128; y += 4.2) o += '<rect x="' + (x + 3) + '" y="' + y.toFixed(1) + '" width="38" height="2" fill="#6d080e"/>';
+      return o;
+    }
+    function rad(x) {
+      return '<g class="rad"><circle cx="' + x + '" cy="216" r="17" fill="#1b1b1b" stroke="#8a8a8a" stroke-width="2.5"/>' +
+        '<circle cx="' + x + '" cy="216" r="12" fill="none" stroke="#3a3a3a" stroke-width="1.5"/>' +
+        '<line x1="' + (x - 11) + '" y1="216" x2="' + (x + 11) + '" y2="216" stroke="#7a7a7a" stroke-width="2.4"/>' +
+        '<line x1="' + x + '" y1="205" x2="' + x + '" y2="227" stroke="#7a7a7a" stroke-width="2.4"/>' +
+        '<circle cx="' + x + '" cy="216" r="4" fill="#a8a8a8"/></g>';
+    }
+    function drehgestell(x) {
+      return '<rect x="' + x + '" y="192" width="150" height="20" rx="5" fill="url(#lkF)"/>' +
+        '<rect x="' + (x + 60) + '" y="188" width="30" height="10" rx="2" fill="#2f2f2f"/>' +
+        '<g fill="#555">' + [x + 22, x + 102].map(function (sx) {
+          return '<rect x="' + sx + '" y="194" width="26" height="4" rx="1"/><rect x="' + sx + '" y="200" width="26" height="4" rx="1"/>';
+        }).join("") + "</g>";
+    }
+    return '<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RhB-Elektrolokomotive Ge 4/4 II">' + D +
+      '<line class="draht" x1="0" y1="14" x2="640" y2="14" stroke="#8a8a8a" stroke-width="2"/>' +
+      stromabnehmer(190, 1) + stromabnehmer(450, -1) +
+      // Dach mit Aufbauten
+      '<rect x="66" y="58" width="508" height="17" rx="7" fill="url(#lkD)"/>' +
+      '<rect x="240" y="48" width="160" height="12" rx="3" fill="#7d7d7d"/><rect x="250" y="44" width="40" height="6" rx="2" fill="#8c8c8c"/><rect x="350" y="44" width="40" height="6" rx="2" fill="#8c8c8c"/>' +
+      '<g fill="#bdbdbd">' + [300, 320, 340].map(function (x) { return '<rect x="' + x + '" y="40" width="6" height="9" rx="2"/>'; }).join("") + "</g>" +
+      // Kasten
+      '<path d="M42 188 L42 100 Q44 76 72 74 L568 74 Q596 76 598 100 L598 188 Z" fill="url(#lkK)"/>' +
+      '<path d="M42 100 Q44 76 72 74 L568 74 Q596 76 598 100" fill="none" stroke="#e8414a" stroke-width="1.5" opacity=".6"/>' +
+      // Führerstände: Fenster + Türen
+      '<path d="M52 88 L96 88 L96 122 L52 122 Q50 105 52 88 Z" fill="url(#lkG)"/>' +
+      '<path d="M588 88 L544 88 L544 122 L588 122 Q590 105 588 88 Z" fill="url(#lkG)"/>' +
+      '<rect x="104" y="84" width="30" height="78" rx="3" fill="none" stroke="#7d0a10" stroke-width="2"/><rect x="110" y="90" width="18" height="26" rx="2" fill="url(#lkG)"/>' +
+      '<rect x="506" y="84" width="30" height="78" rx="3" fill="none" stroke="#7d0a10" stroke-width="2"/><rect x="512" y="90" width="18" height="26" rx="2" fill="url(#lkG)"/>' +
+      '<rect x="116" y="128" width="6" height="2" fill="#ddd"/><rect x="518" y="128" width="6" height="2" fill="#ddd"/>' +
+      // Lüftungsgitter
+      [150, 204, 258, 338, 392, 446].map(lueftung).join("") +
+      '<rect x="306" y="96" width="28" height="18" rx="2" fill="#e9e4d8"/><rect x="309" y="99" width="22" height="12" rx="1" fill="#c8c1b1"/>' +
+      // Zierlinie & Schürze
+      '<rect x="42" y="148" width="556" height="3" fill="#f3f0ea" opacity=".9"/>' +
+      '<rect x="42" y="172" width="556" height="16" fill="#7e0a11"/>' +
+      // Lampen
+      '<g class="licht"><circle cx="592" cy="162" r="10" fill="url(#lkL)"/><circle cx="592" cy="162" r="3.8" fill="#fffbe6"/>' +
+      '<circle cx="48" cy="162" r="3.6" fill="#ff4b3e"/></g>' +
+      // Rahmen, Puffer, Kupplung
+      '<rect x="46" y="188" width="548" height="9" fill="#262626"/>' +
+      '<rect x="30" y="180" width="14" height="10" rx="2" fill="#3a3a3a"/><rect x="596" y="180" width="14" height="10" rx="2" fill="#3a3a3a"/>' +
+      '<rect x="24" y="178" width="6" height="14" rx="1.5" fill="#555"/><rect x="610" y="178" width="6" height="14" rx="1.5" fill="#555"/>' +
+      drehgestell(98) + drehgestell(392) +
+      [135, 215, 429, 509].map(rad).join("") +
+      '<g class="gleis"><rect x="0" y="233" width="640" height="4" fill="#c9cdd2"/><rect x="0" y="237" width="640" height="2" fill="#8d9298"/>' +
+      '<g fill="#5b4535">' + Array.apply(null, Array(20)).map(function (_, i) { return '<rect x="' + (i * 33 + 4) + '" y="239" width="20" height="7"/>'; }).join("") + "</g></g>" +
+      "</svg>";
+  })();
 
   var SVG_WAGEN =
     '<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Güterwagen">' +
@@ -194,7 +232,7 @@
   function vorteile() { return (
     '<div class="vorteile wrap" style="padding:0;max-width:none">' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v12H4zM8 7V5h8v2"/></svg><span><b>Eigene Sonderserien</b>RhB-Modelle aus Auenwald</span></div>' +
-    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16v8H4zM8 8V5M12 8V5M16 8V5M8 16v3M12 16v3M16 16v3"/></svg><span><b>Werkstatt-Service</b>Digitalumbau &amp; Decoder</span></div>' +
+    '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16v8H4zM8 8V5M12 8V5M16 8V5M8 16v3M12 16v3M16 16v3"/></svg><span><b>Service</b>Digitalumbau &amp; Decoder</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span><b>Versand mit DHL</b>Oder Abholung in Auenwald</span></div>' +
     '<div><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><b>Persönliche Beratung</b>' + esc(SHOP.ansprechpartner || SHOP.inhaber) + " · " + esc(SHOP.telefon) + "</span></div>" +
     "</div>"); }
@@ -210,7 +248,7 @@
       '<p><span class="etikett">Eigene Sonderserien der Ge 4/4 II – analog, digital oder mit Sound. Dazu Kupplungen, Weichenlaternen und Ersatzteile für die Gartenbahn.</span></p>' +
       '<div class="knoepfe"><a class="btn" href="#spur-n">Spur N entdecken</a><a class="btn btn-2" href="#spur-g">Zubehör Spur G</a></div>' +
       "</div></div>" +
-      '<div class="hero-strecke" aria-hidden="true"><div class="hero-draht"></div><div class="hero-gleis"></div><div class="hero-zug">' + SVG_LOK + "</div></div></section>" +
+      '<div class="hero-strecke" aria-hidden="true"><div class="hero-masten"></div><div class="hero-draht"></div><div class="hero-gleis"></div><div class="hero-zug">' + SVG_LOK + "</div></div></section>" +
       vorteile() +
       '<section class="band"><div class="wrap">' +
       '<div class="kopfzeile"><div><span class="ueberzeile">Sortiment</span><h2>Zwei Spurweiten, eine Leidenschaft</h2></div></div>' +
@@ -474,7 +512,7 @@
       '<p><span class="etikett">Digitalumbau, Decoderprogrammierung, Lackierung und Beschriftung – sorgfältig ausgeführt in unserer Werkstatt in Auenwald.</span></p>' +
       '<a class="btn" href="#anfrage">Jetzt anfragen</a></div></section>' +
       '<div class="wrap seite">' + abschnitte +
-      '<section class="ablauf"><span class="ueberzeile">So einfach geht’s</span><h2>In vier Schritten zum Wunschmodell</h2><ol class="schritte">' +
+      '<section class="ablauf"><span class="ueberzeile">So einfach geht’s</span><h2>In vier Schritten zum Wunschmodell</h2><ol class="schritte"><span class="schritt-lok" aria-hidden="true">' + SVG_LOK + "</span>" +
       schritte.map(function (s, i) { return '<li><span class="nr">' + (i + 1) + "</span><b>" + s[0] + "</b><p>" + s[1] + "</p></li>"; }).join("") + "</ol></section>" +
       '<div class="kasse" style="margin-top:40px" id="anfrage"><form class="block" id="anfrageForm" novalidate><h2>Anfrage senden</h2>' +
       '<div class="zwei"><div class="feld" data-f="name"><label for="a-name">Name *</label><input id="a-name" name="name" type="text" required autocomplete="name"><div class="fehltext">Bitte ausfüllen.</div></div>' +
@@ -1141,7 +1179,18 @@
     };
   }
 
+  function schritteAnimieren() {
+    var ol = $(".schritte");
+    if (!ol) return;
+    if (!("IntersectionObserver" in window)) { ol.classList.add("sichtbar"); return; }
+    var io = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) { ol.classList.add("sichtbar"); io.disconnect(); }
+    }, { threshold: 0.35 });
+    io.observe(ol);
+  }
+
   function anfrageAktionen() {
+    schritteAnimieren();
     var form = $("#anfrageForm");
     $$(".leist-anfragen").forEach(function (b) {
       b.onclick = function () {

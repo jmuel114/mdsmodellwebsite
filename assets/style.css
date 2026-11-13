@@ -641,3 +641,44 @@ html,body{overflow-x:hidden}
 .wrap{padding-left:20px !important;padding-right:20px !important}
 .menu-btn{text-transform:none !important;letter-spacing:0 !important;font:600 1rem var(--text) !important}
 @media (max-width:760px){.titelband{display:none}.kasse .block,.korb .zeilen{margin-left:0;margin-right:0}.block{padding:18px}}
+
+/* ===== Strecke: Berge, Masten, Schotterbett ===== */
+.hero-strecke{background:linear-gradient(#eef1f4 0%,#e4e8ec 70%,#dadfe4 100%);overflow:hidden}
+.hero-strecke::before{content:"";position:absolute;left:0;right:0;bottom:var(--gleis);height:72%;
+  background:
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 200 L0 120 L80 70 L150 105 L240 40 L330 110 L420 60 L500 95 L590 25 L690 100 L780 55 L860 90 L960 35 L1050 95 L1130 60 L1200 85 L1200 200 Z' fill='%23d3d8de'/%3E%3Cpath d='M590 25 L615 45 L600 50 L580 38 Z M240 40 L262 58 L245 60 Z M960 35 L985 55 L968 57 Z' fill='%23f4f6f8'/%3E%3C/svg%3E") bottom/100% 100% no-repeat,
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 200 L0 150 L110 115 L200 140 L310 95 L420 145 L540 105 L650 150 L760 110 L880 145 L990 100 L1100 140 L1200 120 L1200 200 Z' fill='%23c4cad1'/%3E%3C/svg%3E") bottom/100% 70% no-repeat;
+  opacity:.9}
+.hero-masten{position:absolute;left:0;right:0;bottom:var(--gleis);height:calc(var(--lw) * 0.3640625 - var(--gleis) + var(--lw) * 0.0265625 + 16px);
+  background:repeating-linear-gradient(90deg,transparent 0 120px,#7c8288 120px 124px,transparent 124px 300px);z-index:0}
+.hero-masten::after{content:"";position:absolute;left:0;right:0;top:4px;height:3px;background:repeating-linear-gradient(90deg,transparent 0 100px,#7c8288 100px 146px,transparent 146px 300px)}
+.hero-draht{z-index:1;height:1.5px;background:#6f757b}
+.hero-gleis{height:var(--gleis);z-index:2;
+  background:
+    linear-gradient(#e4e7ea,#a9afb5) 0 0/100% 3px no-repeat,
+    linear-gradient(#5d636a,#5d636a) 0 3px/100% 1px no-repeat,
+    repeating-linear-gradient(90deg,#4f3c2e 0 18px,transparent 18px 30px) 0 4px/100% 6px no-repeat,
+    radial-gradient(circle at 30% 40%,rgba(255,255,255,.18) 0 1px,transparent 1.5px) 0 0/7px 6px,
+    linear-gradient(#8c8478,#5e5850)}
+.hero-zug{z-index:3}
+
+/* Vier Schritte: animiert beim Hineinscrollen */
+.schritte::before{transform:scaleX(0);transform-origin:left;transition:transform 2.4s cubic-bezier(.45,.05,.3,1) .2s}
+.schritte.sichtbar::before{transform:scaleX(1)}
+.schritte li{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.schritte .nr{transform:scale(.4);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.schritte.sichtbar li{opacity:1;transform:none}
+.schritte.sichtbar .nr{transform:scale(1)}
+.schritte.sichtbar li:nth-child(2),.schritte.sichtbar li:nth-child(2) .nr{transition-delay:.25s}
+.schritte.sichtbar li:nth-child(3),.schritte.sichtbar li:nth-child(3) .nr{transition-delay:.85s}
+.schritte.sichtbar li:nth-child(4),.schritte.sichtbar li:nth-child(4) .nr{transition-delay:1.45s}
+.schritte.sichtbar li:nth-child(5),.schritte.sichtbar li:nth-child(5) .nr{transition-delay:2.05s}
+.schritt-lok{position:absolute;top:2px;left:12%;width:64px;z-index:2;transform:translateX(-50%);opacity:0;transition:left 2.4s cubic-bezier(.45,.05,.3,1) .2s,opacity .3s}
+.schritt-lok svg{display:block;width:100%;height:auto}
+.schritt-lok .draht,.schritt-lok .gleis{display:none}
+.schritte.sichtbar .schritt-lok{left:88%;opacity:1}
+.schritte li{z-index:1}
+@media (max-width:900px){.schritt-lok{display:none}}
+@media (prefers-reduced-motion:reduce){.schritte li,.schritte .nr,.schritte::before,.schritt-lok{transition:none !important;opacity:1;transform:none}.schritt-lok{display:none}}
+.schritt-lok{z-index:0;top:4px}.schritte.sichtbar .schritt-lok{left:77%}.schritte li{position:relative;z-index:1}
+.schritt-lok{top:13px}
