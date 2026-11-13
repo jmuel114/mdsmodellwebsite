@@ -580,3 +580,64 @@ img.ansprech-bild{object-fit:cover;padding:0}
 .hero-in{padding-top:56px;padding-bottom:calc(var(--strecke) + 48px)}
 @media (max-width:960px){.hero{--strecke:150px}.hero-strecke{--lw:310px}}
 @media (max-width:560px){.hero{--strecke:120px}.hero-strecke{--lw:240px}.hero-in{padding-top:40px;padding-bottom:calc(var(--strecke) + 32px)}}
+/* „Aus unserem Programm“ auf dem dunklen Grau aus dem Logo */
+.band-weiss{background:#4d4c49 !important;color:#fff}
+.band-weiss h2{color:#fff}
+.band-weiss .ueberzeile{color:#cfcdc7}
+.band-weiss .btn-2{color:#fff;border-color:#fff}
+.band-weiss .btn-2:hover{background:#fff;color:#4d4c49}
+.band-weiss .karte{border-color:#5f5e5a}
+.band-weiss .karte:hover{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* ===== Handy & Tablet Feinschliff ===== */
+html,body{overflow-x:hidden}
+.text,.block,.haendler,.dl-t{overflow-wrap:anywhere}
+.shop > *,.korb > *,.kasse > *,.detail > *,.kontakt > *,.leist-ab > *{min-width:0}
+@media (max-width:960px){
+  .hero-in,.detail,.korb,.kasse,.kontakt,.shop,.leist-ab{grid-template-columns:minmax(0,1fr)}
+  .seitenleiste{-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .seitenleiste::-webkit-scrollbar{display:none}
+}
+@media (max-width:760px){
+  .titelband span{display:none}
+  .titelband .wrap{padding-top:14px;padding-bottom:14px}
+  .seite,.shop,.detail{padding-top:22px}
+  .zeile{gap:10px 14px}
+  .zeile .sum{text-align:right}
+  .lb-leiste span:first-child{display:none}
+  .lb-leiste{justify-content:flex-end}
+  .werkzeug{flex-direction:column;align-items:stretch}
+  .suche{max-width:none}
+  .werkzeug select{width:100%}
+  .kauf{flex-wrap:wrap}
+  .kauf .btn{min-width:100%}
+  .detail .preis{font-size:1.9rem}
+  .band{padding:40px 0}
+  .kopfzeile{align-items:flex-start}
+  .h-map{height:340px}
+}
+@media (max-width:560px){
+  .fuss-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .raster{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+  .karte-text{padding:12px}
+  .karte h3{font-size:.98rem}
+  .preis{font-size:1.3rem}
+  .chips-var{display:none}
+  .details{padding:9px 10px;font-size:.95rem}
+  .marke{font-size:.65rem;top:6px;left:6px}
+  .haendler-raster{grid-template-columns:minmax(0,1fr)}
+  .land-chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+  .land-chips button{white-space:nowrap;flex:none}
+  .schritte{grid-template-columns:minmax(0,1fr)}
+  .lb-knoepfe button{min-width:44px;padding:0 10px}
+  .ansprech{flex-wrap:wrap}
+}
+/* Touch: größere Klickflächen */
+@media (pointer:coarse){
+  .nav a,.nav-unter a{min-height:48px;display:flex;align-items:center}
+  .menge button{width:48px}
+  .link-btn{padding:8px 4px}
+}
+.leist-kopf > div{min-width:0}.leist-kopf h2{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere}@media (max-width:560px){.leist-kopf h2{font-size:1.4rem}.leist-ic{width:48px;height:48px}}
+.wrap{padding-left:20px !important;padding-right:20px !important}
+.menu-btn{text-transform:none !important;letter-spacing:0 !important;font:600 1rem var(--text) !important}
+@media (max-width:760px){.titelband{display:none}.kasse .block,.korb .zeilen{margin-left:0;margin-right:0}.block{padding:18px}}
