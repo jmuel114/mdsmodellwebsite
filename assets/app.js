@@ -428,11 +428,51 @@
       '<a class="btn btn-2" href="#shop" style="margin-top:12px">Weiter einkaufen</a></div>';
   }
 
+  var LEIST_DETAIL = [
+    { titel: "Digitalumbauten", unter: "In allen Spurweiten und Baugrößen", foto: "assets/images/0/mm-mds-60015-001-ad5f4fab.jpg", produkt: "mds-60015",
+      text: "Ihre analoge Lok fährt bald digital: Wir bauen Decoder fachgerecht ein – von Spur N bis zur Gartenbahn, mit oder ohne Sound.",
+      punkte: ["Decoder-Einbau mit passender Schnittstelle oder verdrahtet", "Sound-Umbau inklusive Lautsprecher", "Licht- und Funktionserweiterungen", "Probefahrt und Funktionstest vor der Rückgabe"] },
+    { titel: "Decoderprogrammierung", unter: "Zimo und ESU", foto: "assets/images/1/mm-mds-60014-001-3e06e136.jpg", produkt: "mds-60014",
+      text: "Wir stimmen Ihren Decoder genau auf Ihre Lok und Ihre Anlage ab – damit sie so fährt und klingt, wie Sie es sich vorstellen.",
+      punkte: ["Fahrverhalten: Anfahren, Bremsen, Höchstgeschwindigkeit", "Funktionstasten und Lichtfunktionen nach Wunsch", "Sound-Einstellungen und Lautstärke", "Auch für bereits eingebaute Decoder"] },
+    { titel: "Umlackierung & Beschriftung", unter: "Ihr Modell als Einzelstück", foto: "assets/images/d/id-60012-hakone-b253d22c.jpg", produkt: "mds-60012",
+      text: "Eine Lok in Ihrer Wunschlackierung oder mit individueller Beschriftung – sauber ausgeführt, in allen Baugrößen.",
+      punkte: ["Umlackierung nach Vorbild oder eigenem Entwurf", "Individuelle Beschriftungen und Anschriften", "Sonderserien für Vereine und Firmen", "Beratung zur Machbarkeit vorab"] },
+    { titel: "Servo-Entkupplung", unter: "Neu für die Gartenbahn", neu: true, foto: "assets/images/a/id-21006-1-52215a84.jpg", produkt: "id-21006",
+      text: "Seit Jahren produzieren wir die S-KuPLiX-Kupplung für Spur G. Jetzt gibt es dazu passend eine servogesteuerte Entkupplung.",
+      punkte: ["Ferngesteuertes Entkuppeln auf der Anlage", "Passend zu S-KuPLiX-Kupplungen", "Als Einzelstück oder im 2er-Set erhältlich", "Einbau auf Wunsch durch uns"] }
+  ];
+  var LEIST_ICONS = LEIST.map(function (l) { return l[2]; });
+
   function seiteLeistungen() {
-    return '<div class="wrap seite"><span class="ueberzeile">Werkstatt &amp; Service</span><h1>Leistungen</h1>' +
-      '<p style="max-width:44em;color:var(--grau)">Neben unseren eigenen Modellen bauen wir Ihre Fahrzeuge um. Beschreiben Sie uns kurz, was Sie vorhaben – wir melden uns mit einem Angebot.</p>' +
-      leistungenKarten() +
-      '<div class="kasse" style="margin-top:40px"><form class="block" id="anfrageForm" novalidate><h2>Anfrage senden</h2>' +
+    var abschnitte = LEIST_DETAIL.map(function (l, i) {
+      var bildSrc = (SHOP.bildBasis || "") + l.foto;
+      var p = finde(l.produkt);
+      var bild = DEMO ? '<div class="ersatz">' + (p ? ersatzSvg(p) : SVG_LOK) + "</div>"
+        : '<img src="' + esc(bildSrc) + '" alt="' + esc(l.titel) + '" loading="lazy" data-ersatz="' + esc(l.produkt) + '">';
+      return '<section class="leist-ab' + (i % 2 ? " umgekehrt" : "") + '">' +
+        '<div class="leist-foto">' + bild + (l.neu ? '<span class="neu-band">Neu</span>' : "") + "</div>" +
+        '<div class="leist-text"><div class="leist-kopf"><span class="leist-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + LEIST_ICONS[i] + "</svg></span>" +
+        '<div><span class="ueberzeile" style="margin:0">' + esc(l.unter) + "</span><h2>" + esc(l.titel) + "</h2></div></div>" +
+        "<p>" + esc(l.text) + "</p>" +
+        '<ul class="haken-liste">' + l.punkte.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+        '<button type="button" class="btn btn-2 leist-anfragen" data-leistung="' + esc(l.titel) + '">' + esc(l.titel) + " anfragen</button></div></section>";
+    }).join("");
+    var schritte = [
+      ["Anfrage senden", "Beschreiben Sie Ihr Modell und Ihren Wunsch – per Formular oder Telefon."],
+      ["Angebot erhalten", "Wir prüfen die Machbarkeit und nennen Ihnen Preis und Dauer."],
+      ["Modell zusenden", "Gut verpackt per Post schicken oder in Auenwald vorbeibringen."],
+      ["Fertig zurück", "Nach Umbau und Probefahrt geht Ihr Modell sicher zu Ihnen zurück."]
+    ];
+    return '<section class="leist-hero" data-titel="Leistungen"><div class="hero-schleier"></div><div class="wrap">' +
+      '<span class="ueber"><span class="etikett">Werkstatt &amp; Service</span></span>' +
+      '<h1><span class="etikett">Wir bauen Ihre Modelle um</span></h1>' +
+      '<p><span class="etikett">Digitalumbau, Decoderprogrammierung, Lackierung und Beschriftung – sorgfältig ausgeführt in unserer Werkstatt in Auenwald.</span></p>' +
+      '<a class="btn" href="#anfrage">Jetzt anfragen</a></div></section>' +
+      '<div class="wrap seite">' + abschnitte +
+      '<section class="ablauf"><span class="ueberzeile">So einfach geht’s</span><h2>In vier Schritten zum Wunschmodell</h2><ol class="schritte">' +
+      schritte.map(function (s, i) { return '<li><span class="nr">' + (i + 1) + "</span><b>" + s[0] + "</b><p>" + s[1] + "</p></li>"; }).join("") + "</ol></section>" +
+      '<div class="kasse" style="margin-top:40px" id="anfrage"><form class="block" id="anfrageForm" novalidate><h2>Anfrage senden</h2>' +
       '<div class="zwei"><div class="feld" data-f="name"><label for="a-name">Name *</label><input id="a-name" name="name" type="text" required autocomplete="name"><div class="fehltext">Bitte ausfüllen.</div></div>' +
       '<div class="feld" data-f="email"><label for="a-email">E-Mail *</label><input id="a-email" name="email" type="email" required autocomplete="email"><div class="fehltext">Bitte gültige E-Mail angeben.</div></div></div>' +
       '<div class="zwei"><div class="feld"><label for="a-tel">Telefon</label><input id="a-tel" name="telefon" type="tel" autocomplete="tel"></div>' +
@@ -901,7 +941,7 @@
     var liste = html.match(/<!--LISTE:([^>]*)-->/);
     main.innerHTML = html;
     if (h !== "start" && h !== "") {
-      var t = main.querySelector("h1") ? main.querySelector("h1").textContent : "";
+      var t = main.querySelector("[data-titel]") ? main.querySelector("[data-titel]").dataset.titel : (main.querySelector("h1") ? main.querySelector("h1").textContent : "");
       var band = document.createElement("div");
       band.className = "titelband";
       band.innerHTML = '<div class="wrap"><b>' + esc(t) + '</b><span><a href="#start">MDS-Modell</a> / ' + esc(t) + "</span></div>";
@@ -1099,6 +1139,15 @@
 
   function anfrageAktionen() {
     var form = $("#anfrageForm");
+    $$(".leist-anfragen").forEach(function (b) {
+      b.onclick = function () {
+        form.elements.leistung.value = b.dataset.leistung;
+        $("#anfrage").scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(function () { form.elements.name.focus({ preventScroll: true }); }, 500);
+      };
+    });
+    var hb = $('.leist-hero a[href="#anfrage"]');
+    if (hb) hb.onclick = function (e) { e.preventDefault(); $("#anfrage").scrollIntoView({ behavior: "smooth", block: "start" }); };
     form.onsubmit = function (e) {
       e.preventDefault();
       if (!pruefen(form, ["name", "email", "nachricht", "ds"])) return;
