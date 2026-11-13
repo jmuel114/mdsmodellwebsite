@@ -544,6 +544,36 @@
     };
   }
 
+  /* Lok fährt beim Laden ein und beim Herunterscrollen nach rechts wieder hinaus */
+  var zug = null;
+  function heroZugStart() {
+    var el = $(".hero-zug");
+    if (!el) { zug = null; return; }
+    var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    zug = { el: el, svg: el.querySelector("svg"), raeder: $$(".rad", el), bereit: ruhig };
+    if (!ruhig) el.addEventListener("animationend", function (e) {
+      if (e.target !== el) return;
+      zug.bereit = true;
+      zug.raeder.forEach(function (r) { r.style.animation = "none"; });
+      heroZugScroll();
+    });
+    heroZugScroll();
+  }
+  function heroZugScroll() {
+    if (!zug || !zug.bereit || !document.body.contains(zug.el)) return;
+    var hero = $(".hero");
+    var rest = zug.el.getBoundingClientRect();           // Position der stehenden Lok (Wrapper bewegt sich nicht)
+    var weg = window.innerWidth - rest.left + 40;          // bis ganz aus dem Bild
+    var p = Math.max(0, Math.min(1, window.scrollY / (hero.offsetHeight * 0.75)));
+    var x = Math.pow(p, 1.6) * weg;                          // langsam anfahren, dann schneller
+    zug.svg.style.transform = "translateX(" + x.toFixed(1) + "px)";
+    var radPx = rest.width * 17 / 640;
+    var grad = (x / radPx) * 180 / Math.PI;
+    zug.raeder.forEach(function (r) { r.style.transform = "rotate(" + grad.toFixed(1) + "deg)"; });
+  }
+  window.addEventListener("scroll", function () { if (zug) requestAnimationFrame(heroZugScroll); }, { passive: true });
+  window.addEventListener("resize", function () { if (zug) heroZugScroll(); });
+
   function seite404() {
     return '<div class="wrap seite"><h1>Seite nicht gefunden</h1><p><a class="btn" href="#start">Zur Startseite</a></p></div>';
   }
@@ -602,6 +632,7 @@
     if (h === "kasse") kasseAktionen();
     if (h === "leistungen") anfrageAktionen();
     if (h === "widerrufsformular") widerrufAktionen();
+    if (h === "start" || h === "") heroZugStart();
   }
 
   function mengeKnoepfe(root, onChange) {
