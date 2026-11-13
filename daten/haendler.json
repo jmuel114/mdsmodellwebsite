@@ -7,7 +7,9 @@
   "ort": "01127 Dresden",
   "email": "modelleisenbahnen-jako@gmx.de",
   "web": "",
-  "telefon": "0049 172 6127453"
+  "telefon": "0049 172 6127453",
+  "lat": 51.0805,
+  "lng": 13.727
  },
  {
   "land": "Deutschland",
@@ -17,7 +19,9 @@
   "ort": "01187 Dresden",
   "email": "modellbahn-schildhauer@t-online.de",
   "web": "www.modellbahn-schildhauer.de",
-  "telefon": "0351 279792515"
+  "telefon": "0351 279792515",
+  "lat": 51.03,
+  "lng": 13.712
  },
  {
   "land": "Deutschland",
@@ -27,7 +31,9 @@
   "ort": "01705 Freital",
   "email": "lothar.seiler.6655@t-online.de",
   "web": "",
-  "telefon": "0351 6521433"
+  "telefon": "0351 6521433",
+  "lat": 51.004,
+  "lng": 13.651
  },
  {
   "land": "Deutschland",
@@ -37,7 +43,9 @@
   "ort": "10589 Berlin",
   "email": "info@modellbahnen-am-mierendorffplatz.de",
   "web": "www.modellbahnen-am-mierendorffplatz.de",
-  "telefon": ""
+  "telefon": "",
+  "lat": 52.5262,
+  "lng": 13.305
  },
  {
   "land": "Deutschland",
@@ -47,7 +55,9 @@
   "ort": "30159 Hannover",
   "email": "info@trainplay.de",
   "web": "www.trainplay.de",
-  "telefon": "0511 2712701"
+  "telefon": "0511 2712701",
+  "lat": 52.372,
+  "lng": 9.738
  },
  {
   "land": "Deutschland",
@@ -57,7 +67,9 @@
   "ort": "40217 Düsseldorf",
   "email": "info@menzels-lokschuppen.de",
   "web": "www.menzels-lokschuppen.de",
-  "telefon": "0211 373501"
+  "telefon": "0211 373501",
+  "lat": 51.218,
+  "lng": 6.778
  },
  {
   "land": "Deutschland",
@@ -67,7 +79,9 @@
   "ort": "40723 Hilden",
   "email": "",
   "web": "www.kramm-hilden.de",
-  "telefon": "02103 963399"
+  "telefon": "02103 963399",
+  "lat": 51.168,
+  "lng": 6.931
  },
  {
   "land": "Deutschland",
@@ -77,7 +91,9 @@
   "ort": "41747 Viersen",
   "email": "mail@modellbahnland-arts.de",
   "web": "www.modellbahnland-arts.de",
-  "telefon": "02162 268770"
+  "telefon": "02162 268770",
+  "lat": 51.255,
+  "lng": 6.393
  },
  {
   "land": "Deutschland",
@@ -87,7 +103,9 @@
   "ort": "42287 Wuppertal",
   "email": "axel@imt-frowein.de",
   "web": "www.imt-frowein.de",
-  "telefon": "0202 26036049"
+  "telefon": "0202 26036049",
+  "lat": 51.27,
+  "lng": 7.2
  },
  {
   "land": "Deutschland",
@@ -97,7 +115,9 @@
   "ort": "46397 Bocholt",
   "email": "info@emb-modellbau.de",
   "web": "www.emb-modellbau.de",
-  "telefon": "02871 2347599"
+  "telefon": "02871 2347599",
+  "lat": 51.838,
+  "lng": 6.615
  },
  {
   "land": "Deutschland",
@@ -107,7 +127,9 @@
   "ort": "58679 Nachrodt",
   "email": "info@n-schmalspur.de",
   "web": "www.n-schmalspur.de",
-  "telefon": "02352 334861"
+  "telefon": "02352 334861",
+  "lat": 51.32,
+  "lng": 7.62
  },
  {
   "land": "Deutschland",
@@ -117,7 +139,9 @@
   "ort": "63739 Aschaffenburg",
   "email": "bauer@modellbahndepot.de",
   "web": "www.modellbahndepot.de",
-  "telefon": "06021 4397293"
+  "telefon": "06021 4397293",
+  "lat": 49.975,
+  "lng": 9.149
  },
  {
   "land": "Deutschland",
@@ -127,7 +151,9 @@
   "ort": "70794 Filderstadt",
   "email": "info@modellbahn-scheierlein.de",
   "web": "www.modellbahn-scheierlein.de",
-  "telefon": "07158 8824"
+  "telefon": "07158 8824",
+  "lat": 48.664,
+  "lng": 9.218
  },
  {
   "land": "Deutschland",
@@ -137,7 +163,9 @@
   "ort": "72250 Freudenstadt",
   "email": "info@modellbaustudio-bauer.de",
   "web": "www.modellbaustudio-bauer.de",
-  "telefon": "07441 9171586"
+  "telefon": "07441 9171586",
+  "lat": 48.463,
+  "lng": 8.411
  },
  {
   "land": "Deutschland",
@@ -147,7 +175,9 @@
   "ort": "74399 Walheim",
   "email": "info@s-ade-modellbahn.de",
   "web": "",
-  "telefon": "07143 34546"
+  "telefon": "07143 34546",
+  "lat": 49.015,
+  "lng": 9.15
  },
  {
   "land": "Deutschland",
@@ -157,7 +187,9 @@
   "ort": "79576 Weil am Rhein",
   "email": "ehni-weil@t-online.de",
   "web": "www.eisenbahn-ehni.de",
-  "telefon": "07621 73639"
+  "telefon": "07621 73639",
+  "lat": 47.594,
+  "lng": 7.62
  },
  {
   "land": "Deutschland",
@@ -167,7 +199,9 @@
   "ort": "91080 Uttenreuth",
   "email": "meterspurschweiz@gmail.com",
   "web": "www.meterspur-schweiz.com",
-  "telefon": "09131 1256499"
+  "telefon": "09131 1256499",
+  "lat": 49.597,
+  "lng": 11.071
  },
  {
   "land": "Schweiz",
@@ -177,7 +211,9 @@
   "ort": "3018 Bern",
   "email": "info@bahnorama.ch",
   "web": "www.bahnorama.ch",
-  "telefon": "0041 31 9928588"
+  "telefon": "0041 31 9928588",
+  "lat": 46.944,
+  "lng": 7.395
  },
  {
   "land": "Schweiz",
@@ -187,7 +223,9 @@
   "ort": "3123 Belp",
   "email": "info@hess-modellbahnen.ch",
   "web": "www.hess-modellbahnen.ch",
-  "telefon": "0041 31 8120703"
+  "telefon": "0041 31 8120703",
+  "lat": 46.891,
+  "lng": 7.499
  },
  {
   "land": "Schweiz",
@@ -197,7 +235,9 @@
   "ort": "4460 Gelterkinden",
   "email": "info@hobby-shop.ch",
   "web": "www.hobby-shop.ch",
-  "telefon": "0041 61 9816420"
+  "telefon": "0041 61 9816420",
+  "lat": 47.465,
+  "lng": 7.857
  },
  {
   "land": "Schweiz",
@@ -207,7 +247,9 @@
   "ort": "4852 Rothrist",
   "email": "info@train.li",
   "web": "www.train.li",
-  "telefon": "0041 62 7944265"
+  "telefon": "0041 62 7944265",
+  "lat": 47.305,
+  "lng": 7.885
  },
  {
   "land": "Schweiz",
@@ -217,7 +259,9 @@
   "ort": "50302 Aarau-Rohr",
   "email": "info@eurobahn.ch",
   "web": "www.eurobahn.ch",
-  "telefon": "0041 62 8221020"
+  "telefon": "0041 62 8221020",
+  "lat": 47.4,
+  "lng": 8.08
  },
  {
   "land": "Schweiz",
@@ -227,7 +271,9 @@
   "ort": "6043 Adligenswil",
   "email": "info@suter-meggen.ch",
   "web": "www.suter.meggen.ch",
-  "telefon": "0041 41 3780709"
+  "telefon": "0041 41 3780709",
+  "lat": 47.07,
+  "lng": 8.36
  },
  {
   "land": "Schweiz",
@@ -237,7 +283,9 @@
   "ort": "6252 Dagmersellen",
   "email": "fbm-bacheli@bluewin.ch",
   "web": "www.fbm-bacheli.ch",
-  "telefon": "0041 79 5604056"
+  "telefon": "0041 79 5604056",
+  "lat": 47.213,
+  "lng": 7.985
  },
  {
   "land": "Schweiz",
@@ -247,7 +295,9 @@
   "ort": "6300 Zug",
   "email": "info@kolibri.ch",
   "web": "www.kolibri.ch",
-  "telefon": "041 710 62 62"
+  "telefon": "041 710 62 62",
+  "lat": 47.172,
+  "lng": 8.515
  },
  {
   "land": "Schweiz",
@@ -257,7 +307,9 @@
   "ort": "7206 Igis",
   "email": "mba@mbapiro.ch",
   "web": "www.mbapiro.ch",
-  "telefon": "0041 81 322 60 41"
+  "telefon": "0041 81 322 60 41",
+  "lat": 46.95,
+  "lng": 9.57
  },
  {
   "land": "Schweiz",
@@ -267,7 +319,9 @@
   "ort": "8424 Embrach",
   "email": "info@simatrain.ch",
   "web": "www.simatrain.ch",
-  "telefon": "0041 44 865 00 26"
+  "telefon": "0041 44 865 00 26",
+  "lat": 47.506,
+  "lng": 8.594
  },
  {
   "land": "Schweiz",
@@ -277,7 +331,9 @@
   "ort": "8620 Wetzikon",
   "email": "info@amiba.ch",
   "web": "www.amiba.ch",
-  "telefon": "0041 79 632 1750"
+  "telefon": "0041 79 632 1750",
+  "lat": 47.326,
+  "lng": 8.798
  },
  {
   "land": "Schweiz",
@@ -287,7 +343,9 @@
   "ort": "8737 Gommiswald",
   "email": "info@mk-modell.sc",
   "web": "www.mk-modells.ch",
-  "telefon": "0041 55 5112161"
+  "telefon": "0041 55 5112161",
+  "lat": 47.23,
+  "lng": 9.023
  },
  {
   "land": "Schweiz",
@@ -297,7 +355,9 @@
   "ort": "9215 Schönenberg a. d. Thur",
   "email": "info@lgb-neule.ch",
   "web": "www.lgb-neule.ch",
-  "telefon": "0041 71 2774139"
+  "telefon": "0041 71 2774139",
+  "lat": 47.52,
+  "lng": 9.2
  },
  {
   "land": "Österreich",
@@ -307,7 +367,9 @@
   "ort": "4671 Neukirchen bei Lambach",
   "email": "office@gartenbahnschmiede.at",
   "web": "",
-  "telefon": ""
+  "telefon": "",
+  "lat": 48.1,
+  "lng": 13.8
  },
  {
   "land": "Niederlande",
@@ -317,7 +379,9 @@
   "ort": "1831 GC Koedijk",
   "email": "info@grootspoor.com",
   "web": "www.grootspoor.com",
-  "telefon": ""
+  "telefon": "",
+  "lat": 52.68,
+  "lng": 4.74
  },
  {
   "land": "Niederlande",
@@ -327,7 +391,9 @@
   "ort": "2061 CB Bloemendaal",
   "email": "rainer.kleinsteuber@gmail.com",
   "web": "",
-  "telefon": "0031 23 5268327"
+  "telefon": "0031 23 5268327",
+  "lat": 52.403,
+  "lng": 4.622
  },
  {
   "land": "Niederlande",
@@ -337,7 +403,9 @@
   "ort": "7241 CM Lochem",
   "email": "info@freebit.nl",
   "web": "www.freebit.nl",
-  "telefon": ""
+  "telefon": "",
+  "lat": 52.16,
+  "lng": 6.41
  },
  {
   "land": "Frankreich",
@@ -347,7 +415,9 @@
   "ort": "03450 Nades",
   "email": "suppliers@atelier-vaporiste.com",
   "web": "www.atelier-vaporiste.com",
-  "telefon": "0033 966 846900"
+  "telefon": "0033 966 846900",
+  "lat": 46.15,
+  "lng": 3.05
  },
  {
   "land": "Italien",
@@ -357,7 +427,9 @@
   "ort": "25012 Desenzano del Garda (BS)",
   "email": "info@piratamodels.it",
   "web": "www.piratamodels.it",
-  "telefon": ""
+  "telefon": "",
+  "lat": 45.47,
+  "lng": 10.54
  },
  {
   "land": "Spanien",
@@ -367,7 +439,9 @@
   "ort": "17257 Torroella de Montgrí, Girona",
   "email": "emilisanmartin@hotmail.com",
   "web": "",
-  "telefon": ""
+  "telefon": "",
+  "lat": 42.04,
+  "lng": 3.13
  },
  {
   "land": "Dänemark",
@@ -377,7 +451,9 @@
   "ort": "8200 Aarhus N",
   "email": "kim@jkmodel.dk",
   "web": "www.jkmodel.dk",
-  "telefon": "0045 26 114088"
+  "telefon": "0045 26 114088",
+  "lat": 56.18,
+  "lng": 10.19
  },
  {
   "land": "Hongkong",
@@ -387,6 +463,8 @@
   "ort": "Yaumatei, Kowloon",
   "email": "",
   "web": "www.modelrailway.com.hk",
-  "telefon": ""
+  "telefon": "",
+  "lat": 22.311,
+  "lng": 114.17
  }
 ]

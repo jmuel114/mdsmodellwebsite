@@ -524,7 +524,7 @@
       "<p>Beim Aufruf der Website übermittelt Ihr Browser automatisch Informationen an den Server, die in sogenannten Logfiles gespeichert werden: IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite/Datei, Referrer-URL (zuvor besuchte Seite), Browsertyp und -version sowie Betriebssystem. Diese Daten sind technisch erforderlich, um die Website anzuzeigen und Stabilität und Sicherheit zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse). Eine Zusammenführung mit anderen Datenquellen findet nicht statt.</p>" +
       '<p class="platzhalter">Hosting: Bitte den tatsächlichen Hoster eintragen. Bei GitHub Pages: GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. GitHub verarbeitet die oben genannten Zugriffsdaten auch in den USA; die Übermittlung stützt sich auf das EU-US Data Privacy Framework bzw. EU-Standardvertragsklauseln. Bei eigenem Webspace: Name und Anschrift des Hosters sowie Hinweis auf den Auftragsverarbeitungsvertrag.</p>' +
       "<h2>3. Keine Cookies, keine Analyse- oder Trackingdienste</h2>" +
-      "<p>Diese Website setzt keine Cookies und verwendet keine Analyse-, Werbe- oder Trackingdienste. Schriftarten werden lokal von unserem eigenen Server geladen; es findet keine Verbindung zu Google Fonts statt.</p>" +
+      "<p>Diese Website setzt keine Cookies und verwendet keine Analyse-, Werbe- oder Trackingdienste. Externe Inhalte (Fachhändler-Karte) werden nur nach Ihrem Klick geladen. Schriftarten werden lokal von unserem eigenen Server geladen; es findet keine Verbindung zu Google Fonts statt.</p>" +
       "<h2>4. Warenkorb (lokaler Speicher Ihres Browsers)</h2>" +
       "<p>Damit Ihr Warenkorb beim Weiterklicken erhalten bleibt, speichern wir die ausgewählten Artikel sowie – falls Sie das Bestellformular ausfüllen – Ihre Adressangaben im lokalen Speicher (localStorage) Ihres Browsers. Diese Daten verbleiben auf Ihrem Gerät und werden nicht an uns übertragen, solange Sie keine Bestellung absenden. Sie können sie jederzeit über die Einstellungen Ihres Browsers löschen. Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG (unbedingt erforderlich für den von Ihnen gewünschten Dienst) und Art. 6 Abs. 1 lit. b DSGVO.</p>" +
       "<h2>5. Bestellungen</h2>" +
@@ -538,7 +538,9 @@
           "<p>Die Inhalte des Bestell-, Anfrage- und Widerrufsformulars werden technisch über den Dienst FormSubmit (formsubmit.co, Devro LABS) an unser E-Mail-Postfach weitergeleitet; FormSubmit versendet auch die automatische Eingangsbestätigung an Sie. Dabei werden die eingegebenen Daten sowie Ihre IP-Adresse an FormSubmit übertragen und dort zur Zustellung verarbeitet; eine Verarbeitung außerhalb der EU (insbesondere in den USA) ist möglich. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsabwicklung bzw. Bearbeitung Ihrer Anfrage) sowie unser berechtigtes Interesse an einer einfachen technischen Übermittlung (Art. 6 Abs. 1 lit. f DSGVO). Weitere Informationen: https://formsubmit.co/privacy.</p>"
         : "<h2>7. Versand der Formulare</h2><p>Die Inhalte der Formulare werden über unseren eigenen Webserver per E-Mail an uns übermittelt; zusätzlich wird eine Sicherungskopie der Bestellung auf dem Server gespeichert. Ein externer Dienstleister ist nicht beteiligt.</p>") +
       "<h2>8. Bilder und Karten</h2>" +
-      "<p>Produktfotos werden von unserem eigenen Server (www.mds-modell.eu) geladen. Eine Karte ist nicht eingebettet. Erst wenn Sie auf der Kontaktseite auf „In Google Maps öffnen“ klicken, wird Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) in einem neuen Fenster aufgerufen; dann gelten die Datenschutzbestimmungen von Google.</p>" +
+      "<p>Produktfotos werden von unserem eigenen Server (www.mds-modell.eu) geladen.</p>" +
+      "<p><b>Fachhändler-Karte (OpenStreetMap):</b> Auf der Seite „Fachhändler“ können Sie eine Karte einblenden. Die Karte wird erst geladen, wenn Sie auf „Karte anzeigen“ klicken. Dann ruft Ihr Browser Kartenausschnitte von den Servern der OpenStreetMap Foundation (St John’s Innovation Centre, Cowley Road, Cambridge, CB4 0WS, Großbritannien) ab; dabei wird Ihre IP-Adresse übermittelt. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG), die Sie durch den Klick erteilen. Wenn Sie „Karte künftig immer anzeigen“ wählen, speichern wir diese Entscheidung im lokalen Speicher Ihres Browsers; Sie können sie durch Löschen der Websitedaten widerrufen. Für Großbritannien besteht ein Angemessenheitsbeschluss der EU-Kommission. Weitere Informationen: https://wiki.osmfoundation.org/wiki/Privacy_Policy.</p>" +
+      "<p><b>Google Maps:</b> Erst wenn Sie auf der Kontaktseite auf „In Google Maps öffnen“ klicken, wird Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) in einem neuen Fenster aufgerufen; dann gelten die Datenschutzbestimmungen von Google.</p>" +
       "<h2>9. Ihre Rechte</h2>" +
       "<p>Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO), auf Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie das Recht, einer Verarbeitung auf Grundlage berechtigter Interessen zu widersprechen (Art. 21 DSGVO). Wenden Sie sich dazu einfach per Telefon, Post oder E-Mail an uns.</p>" +
       "<p>Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig für uns ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.</p>" +
@@ -729,14 +731,89 @@
       laender.map(function (l) {
         return '<button type="button" data-land="' + esc(l) + '">' + esc(l) + " <span>" + HAENDLER.filter(function (x) { return x.land === l; }).length + "</span></button>";
       }).join("") + "</div>" +
+      '<div class="karte-box" id="hKarte"><div class="karte-frage">' +
+      '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
+      "<h3>Karte der Fachhändler</h3><p>Zum Anzeigen der Karte werden Kartenausschnitte von OpenStreetMap geladen. Dabei wird Ihre IP-Adresse an die OpenStreetMap Foundation übertragen (<a href=\"#datenschutz\">Datenschutz</a>).</p>" +
+      '<button type="button" class="btn" id="karteLaden">Karte anzeigen</button>' +
+      '<label class="check" style="justify-content:center;margin-top:12px"><input type="checkbox" id="karteMerken"><span>Karte künftig immer anzeigen</span></label></div></div>' +
       '<div id="hListe"></div></div>';
   }
-  function haendlerZeichnen() {
+
+  /* Karte (Leaflet + OpenStreetMap), erst nach Klick geladen */
+  var karte = null, karteGruppe = null;
+  function leafletLaden() {
+    if (window.L) return Promise.resolve();
+    return new Promise(function (res, rej) {
+      var css = document.createElement("link");
+      css.rel = "stylesheet"; css.href = "assets/leaflet/leaflet.css";
+      document.head.appendChild(css);
+      var s = document.createElement("script");
+      s.src = "assets/leaflet/leaflet.js"; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+  function karteStarten() {
+    var box = $("#hKarte");
+    if (!box) return;
+    if (DEMO) {
+      box.querySelector(".karte-frage p").textContent = "In der Vorschau kann keine Karte geladen werden – auf der echten Website erscheint hier die Karte mit allen Fachhändlern.";
+      return;
+    }
+    leafletLaden().then(function () {
+      box.innerHTML = '<div id="hMap" class="h-map" role="region" aria-label="Karte der Fachhändler"></div><p class="karte-hinweis">Standorte ungefähr (Ortsebene). Auf einen Punkt klicken für Adresse und Kontakt.</p>';
+      karte = L.map("hMap", { scrollWheelZoom: false });
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende'
+      }).addTo(karte);
+      karteGruppe = L.featureGroup().addTo(karte);
+      karte.on("focus", function () { karte.scrollWheelZoom.enable(); });
+      karte.on("blur", function () { karte.scrollWheelZoom.disable(); });
+      karteAktualisieren();
+    }).catch(function () {
+      box.querySelector(".karte-frage p").textContent = "Die Karte konnte nicht geladen werden.";
+    });
+  }
+  function haendlerGefiltert() {
     var q = haendlerZustand.q.trim().toLowerCase();
-    var l = HAENDLER.filter(function (x) {
+    return HAENDLER.filter(function (x) {
       return (!haendlerZustand.land || x.land === haendlerZustand.land) &&
         (!q || (x.name + " " + x.ort + " " + x.strasse + " " + x.kontakt).toLowerCase().indexOf(q) >= 0);
     });
+  }
+  function karteAktualisieren() {
+    if (!karte || !document.getElementById("hMap")) return;
+    karteGruppe.clearLayers();
+    var l = haendlerGefiltert().filter(function (x) { return x.lat; });
+    l.forEach(function (x) {
+      var web = x.web ? (/^https?:/.test(x.web) ? x.web : "https://" + x.web) : "";
+      var m = L.circleMarker([x.lat, x.lng], { radius: 9, color: "#fff", weight: 2, fillColor: "#b90504", fillOpacity: 1 });
+      m.bindPopup("<b>" + esc(x.name) + "</b><br>" + esc(x.strasse) + "<br>" + esc(x.ort) + ", " + esc(x.land) +
+        (x.telefon ? "<br>Tel. " + esc(x.telefon) : "") +
+        (x.email ? '<br><a href="mailto:' + esc(x.email) + '">' + esc(x.email) + "</a>" : "") +
+        (web ? '<br><a href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(x.web) + "</a>" : ""));
+      m.haendler = x;
+      m.addTo(karteGruppe);
+    });
+    // Ohne Länderfilter auf Europa zoomen (Hongkong würde die Ansicht sprengen)
+    var sicht = l.filter(function (x) { return haendlerZustand.land || x.lng < 40; });
+    if (sicht.length === 1) karte.setView([sicht[0].lat, sicht[0].lng], 11);
+    else if (sicht.length) karte.fitBounds(L.latLngBounds(sicht.map(function (x) { return [x.lat, x.lng]; })).pad(0.15));
+    else karte.setView([48.5, 9], 5);
+  }
+  function aufKarteZeigen(name) {
+    if (!karte) { karteStarten(); setTimeout(function () { aufKarteZeigen(name); }, 800); return; }
+    karteGruppe.eachLayer(function (m) {
+      if (m.haendler && m.haendler.name === name) {
+        karte.setView(m.getLatLng(), 12);
+        m.openPopup();
+        $("#hKarte").scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  }
+  function haendlerZeichnen() {
+    var l = haendlerGefiltert();
+    karteAktualisieren();
     $$(".land-chips button").forEach(function (b) { b.classList.toggle("aktiv", b.dataset.land === haendlerZustand.land); });
     var gruppen = {};
     l.forEach(function (x) { (gruppen[x.land] = gruppen[x.land] || []).push(x); });
@@ -752,12 +829,21 @@
             (x.telefon ? '<a href="tel:' + esc(tel) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>' + esc(x.telefon) + "</a>" : "") +
             (x.email ? '<a href="mailto:' + esc(x.email) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>' + esc(x.email) + "</a>" : "") +
             (web ? '<a href="' + esc(web) + '" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>' + esc(x.web.replace(/^https?:\/\//, "")) + "</a>" : "") +
-            "</div></div>";
+            "</div>" +
+            (x.lat ? '<button type="button" class="link-btn h-karte" data-karte="' + esc(x.name) + '">Auf der Karte zeigen</button>' : "") +
+            "</div>";
         }).join("") + "</div>";
     }).join("") : '<div class="leer">Kein Fachhändler gefunden.</div>';
+    $$("[data-karte]").forEach(function (b) { b.onclick = function () { aufKarteZeigen(b.dataset.karte); }; });
   }
   function haendlerAktionen() {
+    karte = null;
     haendlerZeichnen();
+    $("#karteLaden").onclick = function () {
+      if ($("#karteMerken").checked) speicher("mds-karte", true);
+      karteStarten();
+    };
+    if (speicher("mds-karte")) karteStarten();
     $("#hSuche").oninput = function (e) { haendlerZustand.q = e.target.value; haendlerZeichnen(); };
     $$(".land-chips button").forEach(function (b) { b.onclick = function () { haendlerZustand.land = b.dataset.land; haendlerZeichnen(); }; });
   }

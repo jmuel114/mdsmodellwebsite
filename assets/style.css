@@ -509,3 +509,15 @@ img.ansprech-bild{object-fit:cover;padding:0}
 .fuss-logo{display:inline-flex;align-items:center;gap:10px;background:#fff;padding:12px 16px;text-decoration:none}
 .fuss-logo img{height:44px;width:auto;display:block}
 .fuss a.fuss-logo{display:inline-flex;padding:10px 14px}
+
+/* Fachhändler-Karte */
+.karte-box{margin:18px 0 6px;border:1px solid var(--linie);background:#f6f6f6}
+.karte-frage{text-align:center;padding:40px 24px;max-width:640px;margin:0 auto}
+.karte-frage svg{color:var(--rot);margin-bottom:8px}
+.karte-frage p{color:var(--grau);font-size:1rem}
+.h-map{height:480px;width:100%;background:#e8e8e8}
+.karte-hinweis{font-size:.9rem;color:var(--grau);margin:0;padding:8px 12px;background:#fff;border-top:1px solid var(--linie)}
+.leaflet-popup-content{font:15px/1.5 var(--text)}
+.leaflet-container a{color:var(--rot)}
+.h-karte{margin-top:10px;padding:0;color:var(--rot);font-size:.95rem}
+@media (max-width:560px){.h-map{height:360px}}
