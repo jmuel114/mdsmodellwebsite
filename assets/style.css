@@ -574,3 +574,9 @@ img.ansprech-bild{object-fit:cover;padding:0}
 @keyframes einfahrt-links{from{transform:translateX(calc(-100% - 5vw))}to{transform:none}}
 .aufpreis-hinweis{display:block;color:var(--rot);font-size:.88rem;font-weight:600}
 .variante .wahl small{font-size:.78rem;color:var(--rot)}
+/* Kompaktere Strecke, damit die vier Vorteile direkt sichtbar sind */
+.hero{min-height:0 !important;--strecke:165px}
+.hero-strecke{--lw:350px;--gleis:20px}
+.hero-in{padding-top:56px;padding-bottom:calc(var(--strecke) + 48px)}
+@media (max-width:960px){.hero{--strecke:150px}.hero-strecke{--lw:310px}}
+@media (max-width:560px){.hero{--strecke:120px}.hero-strecke{--lw:240px}.hero-in{padding-top:40px;padding-bottom:calc(var(--strecke) + 32px)}}
