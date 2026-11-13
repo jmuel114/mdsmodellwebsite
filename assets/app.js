@@ -780,7 +780,7 @@
   }
 
   /* Karte (Leaflet + OpenStreetMap), erst nach Klick geladen */
-  var karte = null, karteGruppe = null;
+  var lkarte = null, karteGruppe = null;
   function leafletLaden() {
     if (window.L) return Promise.resolve();
     return new Promise(function (res, rej) {
@@ -801,14 +801,14 @@
     }
     leafletLaden().then(function () {
       box.innerHTML = '<div id="hMap" class="h-map" role="region" aria-label="Karte der Fachhändler"></div><p class="karte-hinweis">Standorte ungefähr (Ortsebene). Auf einen Punkt klicken für Adresse und Kontakt.</p>';
-      karte = L.map("hMap", { scrollWheelZoom: false });
+      lkarte = L.map("hMap", { scrollWheelZoom: false });
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 18,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende'
-      }).addTo(karte);
-      karteGruppe = L.featureGroup().addTo(karte);
-      karte.on("focus", function () { karte.scrollWheelZoom.enable(); });
-      karte.on("blur", function () { karte.scrollWheelZoom.disable(); });
+      }).addTo(lkarte);
+      karteGruppe = L.featureGroup().addTo(lkarte);
+      lkarte.on("focus", function () { lkarte.scrollWheelZoom.enable(); });
+      lkarte.on("blur", function () { lkarte.scrollWheelZoom.disable(); });
       karteAktualisieren();
     }).catch(function () {
       box.querySelector(".karte-frage p").textContent = "Die Karte konnte nicht geladen werden.";
@@ -822,7 +822,7 @@
     });
   }
   function karteAktualisieren() {
-    if (!karte || !document.getElementById("hMap")) return;
+    if (!lkarte || !document.getElementById("hMap")) return;
     karteGruppe.clearLayers();
     var l = haendlerGefiltert().filter(function (x) { return x.lat; });
     l.forEach(function (x) {
@@ -837,15 +837,15 @@
     });
     // Ohne Länderfilter auf Europa zoomen (Hongkong würde die Ansicht sprengen)
     var sicht = l.filter(function (x) { return haendlerZustand.land || x.lng < 40; });
-    if (sicht.length === 1) karte.setView([sicht[0].lat, sicht[0].lng], 11);
-    else if (sicht.length) karte.fitBounds(L.latLngBounds(sicht.map(function (x) { return [x.lat, x.lng]; })).pad(0.15));
-    else karte.setView([48.5, 9], 5);
+    if (sicht.length === 1) lkarte.setView([sicht[0].lat, sicht[0].lng], 11);
+    else if (sicht.length) lkarte.fitBounds(L.latLngBounds(sicht.map(function (x) { return [x.lat, x.lng]; })).pad(0.15));
+    else lkarte.setView([48.5, 9], 5);
   }
   function aufKarteZeigen(name) {
-    if (!karte) { karteStarten(); setTimeout(function () { aufKarteZeigen(name); }, 800); return; }
+    if (!lkarte) { karteStarten(); setTimeout(function () { aufKarteZeigen(name); }, 800); return; }
     karteGruppe.eachLayer(function (m) {
       if (m.haendler && m.haendler.name === name) {
-        karte.setView(m.getLatLng(), 12);
+        lkarte.setView(m.getLatLng(), 12);
         m.openPopup();
         $("#hKarte").scrollIntoView({ behavior: "smooth", block: "center" });
       }
@@ -877,7 +877,7 @@
     $$("[data-karte]").forEach(function (b) { b.onclick = function () { aufKarteZeigen(b.dataset.karte); }; });
   }
   function haendlerAktionen() {
-    karte = null;
+    lkarte = null;
     haendlerZeichnen();
     $("#karteLaden").onclick = function () {
       if ($("#karteMerken").checked) speicher("mds-karte", true);
@@ -1200,6 +1200,6 @@
     var laden = function (f) { return fetch("daten/" + f).then(function (r) { return r.json(); }); };
     Promise.all([laden("shop.json"), laden("produkte.json"), laden("haendler.json").catch(function () { return []; }), laden("downloads.json").catch(function () { return []; })])
       .then(function (r) { start(r[0], r[1], r[2], r[3]); })
-      .catch(function () { main.innerHTML = '<div class="wrap seite"><h1>Fehler beim Laden</h1><p>Der Artikelkatalog konnte nicht geladen werden. Bitte rufen Sie uns an: 07191 9127979</p></div>'; });
+      .catch(function (err) { if (window.console) console.error(err); main.innerHTML = '<div class="wrap seite"><h1>Fehler beim Laden</h1><p>Der Artikelkatalog konnte nicht geladen werden. Bitte rufen Sie uns an: 07191 9127979</p></div>'; });
   }
 })();

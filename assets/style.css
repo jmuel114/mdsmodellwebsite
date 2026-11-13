@@ -559,3 +559,16 @@ img.ansprech-bild{object-fit:cover;padding:0}
 }
 @media (max-width:520px){.schritte{grid-template-columns:1fr}}
 .leist-foto .ersatz svg{width:100%;height:auto;display:block}.leist-foto .ersatz{max-width:420px}
+/* Foto nur bis zur Zug-Strecke, Zug fährt auf eigenem hellen Band */
+.hero{--strecke:260px;background:linear-gradient(#f5f5f5,#e6e6e6) !important}
+.hero::before{content:"";position:absolute;left:0;right:0;top:0;bottom:var(--strecke);background:#333 url(https://www.mds-modell.eu/assets/images/1/header-f73e9e55.jpg) center/cover;z-index:0}
+.hero .hero-schleier{bottom:var(--strecke)}
+.hero-in{padding-bottom:calc(var(--strecke) + 70px)}
+.hero-strecke{height:var(--strecke)}
+.hero-draht{background:#8a8a8a}
+@media (max-width:960px){.hero{--strecke:220px}.hero-strecke{--lw:420px}}
+@media (max-width:560px){.hero{--strecke:160px}.hero-strecke{--lw:300px}.hero-in{padding-bottom:calc(var(--strecke) + 40px)}}
+/* Lok fährt kurz von links herein, hält links und fährt beim Scrollen nach rechts hinaus */
+.hero-zug{right:auto;left:4%;animation:einfahrt-links 2.4s cubic-bezier(.2,.65,.3,1) .2s both}
+.hero-zug .rad{animation:rollen .45s linear .2s 5}
+@keyframes einfahrt-links{from{transform:translateX(calc(-100% - 5vw))}to{transform:none}}
